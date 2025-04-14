@@ -1,0 +1,294 @@
+@extends('User.layouts.main')
+
+@section('title', 'Dashboard')
+
+@section('outer_css')
+<style media="screen">
+[v-cloak] {
+  display: none;
+}
+
+table{
+  table-layout: fixed;
+  width: 100px;
+}
+</style>
+@endsection
+
+
+<div id="wrapper">
+  @section('content')
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>@lang('Worker/dashboard.My') @lang('Worker/dashboard.Jobs')</h1>
+    </div>
+  </div>
+
+  <div class="row" id="app" v-cloak>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>@lang('Worker/dashboard.Daily') @lang('Worker/dashboard.Jobs')</b>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <table width="100%" id="table" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Sr #</th>
+                <th>@lang('Worker/dashboard.Project')</th>
+                <th>@lang('Worker/dashboard.Task')</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(dailyJob, index) in dailyJobs">
+                <td>@{{++index}}</td>
+                <td>@{{dailyJob['project_name']}}</td>
+                <td>@{{dailyJob['task_name']}}</td>
+                <td style="text-align:center;">
+                  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#viewDetails" @click="showDetails(dailyJob)">@lang('Worker/dashboard.View') @lang('Worker/dashboard.Details')</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <b>@lang('Worker/dashboard.Weekly') @lang('Worker/dashboard.Jobs')</b>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <table width="100%" id="table" class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Sr #</th>
+                <th>@lang('Worker/dashboard.Project')</th>
+                <th>@lang('Worker/dashboard.Task')</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(weeklyJob, index) in weeklyJobs">
+                <td>@{{++index}}</td>
+                <td>@{{weeklyJob['project_name']}}</td>
+                <td>@{{weeklyJob['task_name']}}</td>
+                <td style="text-align:center;">
+                  <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#viewDetails" @click="showDetails(weeklyJob)">@lang('Worker/dashboard.View') @lang('Worker/dashboard.Details')</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="viewDetails" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="closeModal">&times;</button>
+            <h4 class="modal-title">@lang('Worker/dashboard.Job') @lang('Worker/dashboard.Detail') </h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Customer')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['customer_name']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Project') @lang('Worker/dashboard.Name')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['project_name']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Project') @lang('Worker/dashboard.Address')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['project_address']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Floor')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['floor_name']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Area')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['area_name']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Task')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['task_name']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">@lang('Worker/dashboard.Notes')</label>
+              </div>
+              <div class="col-md-6">
+                @{{jobDetail['note']}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+
+              <div class="col-md-4">
+                <u><h3>@lang('Worker/dashboard.Week') @lang('Worker/dashboard.Card')</h3></u>
+              </div>
+
+              <div class="col-md-4">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>@lang('Worker/dashboard.Mon')</th>
+                      <th>@lang('Worker/dashboard.Tue')</th>
+                      <th>@lang('Worker/dashboard.Wed')</th>
+                      <th>@lang('Worker/dashboard.Thu')</th>
+                      <th>@lang('Worker/dashboard.Fri')</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr v-if="timeCards">
+                        <td v-if="timeCards.mon" style="text-align:center;">
+                          <i class="fa fa-check" style="color:green;"></i>
+                        </td>
+                        <td v-else style="text-align:center;">
+                          <i class="fa fa-times center" style="color:red;"></i>
+                        </td>
+
+                        <td v-if="timeCards.tue" style="text-align: center;">
+                          <i class="fa fa-check" style="color:green;"></i>
+                        </td>
+                        <td v-else style="text-align:center;">
+                          <i class="fa fa-times center" style="color:red;"></i>
+                        </td>
+
+                        <td v-if="timeCards.wed" style="text-align:center;">
+                          <i class="fa fa-check" style="color:green;"></i>
+                        </td>
+                        <td v-else style="text-align:center;">
+                          <i class="fa fa-times center" style="color:red;"></i>
+                        </td>
+
+                        <td v-if="timeCards.thu" style="text-align:center;">
+                          <i class="fa fa-check" style="color:green;"></i>
+                        </td>
+                        <td v-else style="text-align:center;">
+                          <i class="fa fa-times center" style="color:red;"></i>
+                        </td>
+
+                        <td v-if="timeCards.fri" style="text-align:center;">
+                          <i class="fa fa-check" style="color:green;"></i>
+                        </td>
+                        <td v-else style="text-align:center;">
+                          <i class="fa fa-times center" style="color:red;"></i>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+
+              <div class="col-md-4">
+                <u><h3>@lang('Worker/dashboard.Time') @lang('Worker/dashboard.Card')</h3></u>
+              </div>
+
+              <div class="col-md-4">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>@lang('Worker/dashboard.Week') @lang('Worker/dashboard.Number')</th>
+                      <th>@lang('Worker/dashboard.Mon')</th>
+                      <th>@lang('Worker/dashboard.Tue')</th>
+                      <th>@lang('Worker/dashboard.Wed')</th>
+                      <th>@lang('Worker/dashboard.Thu')</th>
+                      <th>@lang('Worker/dashboard.Fri')</th>
+                      <th>@lang('Worker/dashboard.Total') @lang('Worker/dashboard.Time')</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <template v-if="weekCards">
+                      <tr v-for="weekCard in weekCards">
+                        <td>@{{weekCard.weeknumber}}</td>
+                        <td>@{{weekCard.mon}}</td>
+                        <td>@{{weekCard.tue}}</td>
+                        <td>@{{weekCard.wed}}</td>
+                        <td>@{{weekCard.thu}}</td>
+                        <td>@{{weekCard.fri}}</td>
+                        <td>@{{weekCard.total_hours_per_week}}</td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" @click.prevent="closeModal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  @endsection
+</div>
+@section('outer_script')
+<script type="text/javascript">
+let APP_URL = {!! json_encode(url('/').'/') !!}
+</script>
+<script src="{{asset('public/js/lodash.min.js')}}"></script>
+<script src="{{asset('public/js/axios.min.js')}}"></script>
+<script src="{{asset('public/js/vue.min.js')}}"></script>
+<script src="https://unpkg.com/vue-swal"></script>
+<script src="{{asset('public/js/worker_myJobs.js')}}"></script>
+@endsection
