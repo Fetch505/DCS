@@ -215,9 +215,9 @@ $(function () {
 <script type="text/javascript">
 let APP_URL = {!! json_encode(url('/').'/') !!}
 </script>
-<script src="{{asset('public/js/lodash.min.js')}}"></script>
-<script src="{{asset('public/js/axios.min.js')}}"></script>
-<script src="{{asset('public/js/vue.min.js')}}"></script>
+<script src="{{asset('js/lodash.min.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
 <script src="https://unpkg.com/vue-swal"></script>
-<script src="{{asset('public/js/workerIndex.js')}}"></script>
+<script src="{{asset('js/workerIndex.js')}}"></script>
 @endsection

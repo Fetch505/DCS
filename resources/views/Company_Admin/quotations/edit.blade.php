@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
   <style>
     [v-cloak] {
       display: none;
@@ -144,15 +144,15 @@
   </div>
 
   @section('outer_script')
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-  <script src="{{asset('public/js/axios.min.js')}}"></script>
-  <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/vue-select-latest.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
   <script>
     var data = {
       quotation: {!! json_encode($quotation) !!},
       workerTypes: {!! json_encode($workerTypes) !!}
     };
   </script>
-  <script src="{{asset('public/js/Quotations/edit.js')}}"></script>
+  <script src="{{asset('js/Quotations/edit.js')}}"></script>
   @endsection

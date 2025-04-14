@@ -2,7 +2,7 @@
 
 @section('outer_css')
 
-<style src="{{asset('public/select2/dist/css/select2.min.css')}}"></style>
+<style src="{{asset('select2/dist/css/select2.min.css')}}"></style>
 <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -257,7 +257,7 @@
 </div>
 
   @section('outer_script')
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
   @endsection
 
 

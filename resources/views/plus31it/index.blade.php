@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('public/css/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
     <div class="container">
         <div class="bodystyle nomarginpadding">
             <nav class="navbar navbar-expand-lg navbar-light"> <a class="navbar-brand"href="{{url('/')}}"> <img
-                        src="{{asset('public/image/logo.png')}}" height="80px" alt=""> </a>
+                        src="{{asset('image/logo.png')}}" height="80px" alt=""> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
@@ -332,7 +332,7 @@
                     <div class="iconcontainer py-4">
                         <div class="iconwrapper">
                             <a href="http://plus31it.com/">
-                                <img src="{{asset('public/image/web.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
+                                <img src="{{asset('image/web.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
                         </div>
 
                         <div class="containertext pl-4">
@@ -359,7 +359,7 @@
                     <!--Enterprise Section Start-->
                     <div class="iconcontainer py-4">
                         <div class="iconwrapper">
-                            <a href="productandservices.html"><img src="{{asset('public/image/web-development.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
+                            <a href="productandservices.html"><img src="{{asset('image/web-development.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
                         </div>
 
                         <div class="containertext pl-4">
@@ -393,7 +393,7 @@
                     <!--Enterprise Section Start-->
                     <div class="iconcontainer py-4">
                         <div class="iconwrapper">
-                            <a href="productandservices.html"><img src="{{asset('public/image/api.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
+                            <a href="productandservices.html"><img src="{{asset('image/api.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
                         </div>
 
                         <div class="containertext pl-4">
@@ -421,7 +421,7 @@
                     <!--Enterprise Section Start-->
                     <div class="iconcontainer py-4">
                         <div class="iconwrapper">
-                            <a href="productandservices.html"><img src="{{asset('public/image/mobile-app.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
+                            <a href="productandservices.html"><img src="{{asset('image/mobile-app.svg')}}" class="icon pr-2" height="60px;" alt=""></a>
                         </div>
 
                         <div class="containertext pl-4">
@@ -492,7 +492,7 @@
                                     </div>
                                     <div class="col-md-4 mb-2">
                                         <a href="{{url('/acs')}}">
-                                            <img src="{{asset('public/image/client-10.jpg')}}" alt="Image" style="max-width:100%;">
+                                            <img src="{{asset('image/client-10.jpg')}}" alt="Image" style="max-width:100%;">
                                         </a>
                                     </div>
 

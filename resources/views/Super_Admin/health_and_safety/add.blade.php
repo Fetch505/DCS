@@ -1,7 +1,7 @@
 @extends('Super_Admin.layouts.admin')
 
 @section('outer_css')
-  <link href="{{asset('public/multiple-select/multiple-select.css')}}" rel="stylesheet"/>
+  <link href="{{asset('multiple-select/multiple-select.css')}}" rel="stylesheet"/>
   <style>
     [v-cloak] {
       display: none;
@@ -84,17 +84,17 @@
 </div>
 
   @section('outer_script')
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
-  <script src="{{asset('public/js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-  <script src="{{asset('public/js/lodash.min.js')}}"></script>
-  <script src="{{asset('public/js/axios.min.js')}}"></script>
-  <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
+  <script src="{{asset('js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/lodash.min.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/vue-select-latest.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
 
   <script src="https://unpkg.com/vue-swal"></script>
 
-  <script src="{{asset('public/js/Health/add.js')}}"></script>
+  <script src="{{asset('js/Health/add.js')}}"></script>
   @endsection
 
 <!-- Content Header (Page header) -->

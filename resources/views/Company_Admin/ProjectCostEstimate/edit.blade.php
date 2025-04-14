@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <style src="{{asset('public/select2/dist/css/select2.min.css')}}"></style>
+  <style src="{{asset('select2/dist/css/select2.min.css')}}"></style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -1074,14 +1074,14 @@
   @section('outer_script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 
-    <script src="{{asset('public/js/lodash.min.js')}}"></script>
-    <script src="{{asset('public/js/axios.min.js')}}"></script>
-    <script src="{{asset('public/js/vue.min.js')}}"></script>
+    <script src="{{asset('js/lodash.min.js')}}"></script>
+    <script src="{{asset('js/axios.min.js')}}"></script>
+    <script src="{{asset('js/vue.min.js')}}"></script>
     <script src="https://unpkg.com/vue-swal"></script>
-    <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
+    <script src="{{asset('js/vue-select-latest.js')}}"></script>
     <!-- <script src="https://unpkg.com/vue-select@latest"></script> -->
   <!-- <script src="{{asset('js/vue-select.js')}}"></script> -->
-    <script src="{{asset('public/js/ProjectCostEstimate/edit.js')}}"></script>
+    <script src="{{asset('js/ProjectCostEstimate/edit.js')}}"></script>
 
 
 @endsection

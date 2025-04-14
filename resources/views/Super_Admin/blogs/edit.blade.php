@@ -64,7 +64,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.1/dist/quill.js"></script>
 
-<script src="{{asset('public/js/vue.min.js')}}"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
 <script>
       new Vue({
          el: '#add_blog',

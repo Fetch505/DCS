@@ -5,7 +5,7 @@
     </style>
     <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
-    <link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('title', 'Dashboard')
@@ -206,24 +206,24 @@
 
 @section('outer_script')
 
-    <script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
     <script>
         var initialData = @json($jobData);
         var selectedProjectId = document.getElementById('project').value;
         console.log(selectedProjectId);
     </script>
-    <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-    <script src="{{asset('public/js/lodash.min.js')}}"></script>
-    <script src="{{asset('public/js/axios.min.js')}}"></script>
-    <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
+    <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+    <script src="{{asset('js/lodash.min.js')}}"></script>
+    <script src="{{asset('js/axios.min.js')}}"></script>
+    <script src="{{asset('js/vue-select-latest.js')}}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script> --}}
-    <script src="{{asset('public/js/vue.min.js')}}"></script>
+    <script src="{{asset('js/vue.min.js')}}"></script>
     <script type="text/javascript"></script>
     <script src="https://unpkg.com/vue-swal"></script>
-    <script src="{{asset('public/js/planning.js')}}"></script>
+    <script src="{{asset('js/planning.js')}}"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>

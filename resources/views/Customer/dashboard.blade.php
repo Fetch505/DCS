@@ -120,7 +120,7 @@
         <div class="box-body chat" id="chat-box">
           <!-- chat item -->
           <div class="item">
-            <img src="{{asset('public/dist/img/user4-128x128.jpg')}}" alt="user image" class="online">
+            <img src="{{asset('dist/img/user4-128x128.jpg')}}" alt="user image" class="online">
 
             <p class="message">
               <a href="#" class="name">
@@ -147,7 +147,7 @@
           <!-- /.item -->
           <!-- chat item -->
           <div class="item">
-            <img src="{{asset('public/dist/img/user3-128x128.jpg')}}" alt="user image" class="offline">
+            <img src="{{asset('dist/img/user3-128x128.jpg')}}" alt="user image" class="offline">
 
             <p class="message">
               <a href="#" class="name">
@@ -162,7 +162,7 @@
           <!-- /.item -->
           <!-- chat item -->
           <div class="item">
-            <img src="{{asset('public/dist/img/user2-160x160.jpg')}}" alt="user image" class="offline">
+            <img src="{{asset('dist/img/user2-160x160.jpg')}}" alt="user image" class="offline">
 
             <p class="message">
               <a href="#" class="name">

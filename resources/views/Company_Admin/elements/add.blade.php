@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('title', 'Dashboard')
@@ -57,7 +57,7 @@
 @endsection
 
   @section('outer_script')
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
   <script>
         $('#multi-select').select2();
   </script>

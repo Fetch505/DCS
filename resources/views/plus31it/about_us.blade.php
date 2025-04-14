@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('public/css/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 </head>
 <body>
 
@@ -52,7 +52,7 @@
     <div class="container">
         <div class="bodystyle nomarginpadding">
             <nav class="navbar navbar-expand-lg navbar-light"> <a class="navbar-brand" href="{{url('/')}}"> <img
-                        src="{{asset('public/image/logo.png')}}" height="80px" alt=""> </a>
+                        src="{{asset('image/logo.png')}}" height="80px" alt=""> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>

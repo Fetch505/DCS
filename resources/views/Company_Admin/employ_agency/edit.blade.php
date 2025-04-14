@@ -110,5 +110,5 @@
   </div>
 
   @section('outer_script')
-  <script src="{{asset('public/js/Empl_agency/editJquery.js')}}"></script>
+  <script src="{{asset('js/Empl_agency/editJquery.js')}}"></script>
   @endsection

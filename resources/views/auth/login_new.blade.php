@@ -7,9 +7,9 @@
 
     <title>Admin - Login </title>
 
-    <link rel="stylesheet" href="{{asset('public/login/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('login/reset.css')}}">
 
-    <link rel="stylesheet" href="{{asset('public/login/style.css')}}" media="screen" type="text/css" />
+    <link rel="stylesheet" href="{{asset('login/style.css')}}" media="screen" type="text/css" />
 
 </head>
 
@@ -17,7 +17,7 @@
 
 <div class="wrap">
     <div class="avatar">
-        <img src="{{asset('public/img/final_logo_dcs.png')}}">
+        <img src="{{asset('img/final_logo_dcs.png')}}">
     </div>
 <form class="form" action="{{ url('/') }}" method="post">
     @csrf

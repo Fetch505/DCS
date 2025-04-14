@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+  <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('title', 'Dashboard')

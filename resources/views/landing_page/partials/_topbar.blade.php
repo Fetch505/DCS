@@ -1,6 +1,6 @@
 <nav style="background-color: #FFFFFF; " class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
     <a href="{{url('/')}}" class=" p-0">
-        <img style="height: 65px; width: 160px;" src="{{asset('public/new_landing_page/img/final_logo_dcs.png')}}" alt="Logo">
+        <img style="height: 65px; width: 160px;" src="{{asset('new_landing_page/img/final_logo_dcs.png')}}" alt="Logo">
     </a>
     <button class="navbar-toggler rounded-pill" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>

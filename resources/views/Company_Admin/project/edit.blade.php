@@ -112,7 +112,7 @@ thead {
   border: 1px solid;
 }
 </style>
-<link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 
@@ -804,15 +804,15 @@ thead {
   let project_id = {{$project->id}};
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-<script src="{{asset('public/js/vue.min.js')}}"></script>
-<script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-<script src="{{asset('public/project_edit/edit_job.js')}}"></script>
-<script src="{{asset('public/js/lodash.min.js')}}"></script>
-<script src="{{asset('public/js/axios.min.js')}}"></script>
-<script src="{{asset('public/js/vue-select-latest.js')}}"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
+<script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('project_edit/edit_job.js')}}"></script>
+<script src="{{asset('js/lodash.min.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
+<script src="{{asset('js/vue-select-latest.js')}}"></script>
 <script src="https://unpkg.com/vue-swal"></script>
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC35SHRVQ0JebXbbRKgx85RTjZXDsDQH70&libraries=places">
 </script>
-<script src="{{asset('public/js/edit_project.js')}}"></script>
+<script src="{{asset('js/edit_project.js')}}"></script>
 @endsection

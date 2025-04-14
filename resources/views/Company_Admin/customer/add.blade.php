@@ -151,18 +151,18 @@
   @section('outer_script')
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
-  <script src="{{asset('public/js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
+  <script src="{{asset('js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
   <script type="text/javascript">
 
   </script>
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-  <script src="{{asset('public/js/lodash.min.js')}}"></script>
-  <script src="{{asset('public/js/axios.min.js')}}"></script>
-  <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/lodash.min.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/vue-select-latest.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
 
   <script src="https://unpkg.com/vue-swal"></script>
 
-  <script src="{{asset('public/js/Customer/add.js')}}"></script>
+  <script src="{{asset('js/Customer/add.js')}}"></script>
   @endsection

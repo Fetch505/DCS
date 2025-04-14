@@ -110,6 +110,6 @@
 @endsection
 
 @section('outer_script')
-<script src="{{asset('public/js/Company/editJquery.js')}}"></script>
+<script src="{{asset('js/Company/editJquery.js')}}"></script>
 
 @endsection

@@ -56,7 +56,7 @@ class HealthAndSafetyController extends Controller
       $video_name = $file->getClientOriginalName();
       $name = pathinfo($video_name, PATHINFO_FILENAME);
       $filename = $name . '_' . time() . '.' . $extension;
-      $video_url = asset('public/health_and_safety/' . $filename);
+      $video_url = asset('health_and_safety/' . $filename);
 
       try{
           $health = new HealthAndSafety;
@@ -137,7 +137,7 @@ class HealthAndSafetyController extends Controller
         $name = pathinfo($video_name, PATHINFO_FILENAME);
         $extension = pathinfo($video_name, PATHINFO_EXTENSION);
         $filename = $name . '_' . time() . '.' . $extension;
-        $video_url = asset('public/health_and_safety/' . $filename);
+        $video_url = asset('health_and_safety/' . $filename);
         $oldfilename = $request->file_name;
         $oldfilepath = public_path('health_and_safety/' . $oldfilename);
 

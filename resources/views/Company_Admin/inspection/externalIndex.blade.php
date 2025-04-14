@@ -98,7 +98,7 @@ input[type=checkbox] {
                   <td>{{ $report->project->name }}</td>
                   <td>{{ date('M j, Y', strtotime($report->created_at)) }}</td>
                   <td style="text-align:center;">
-                    <a href="{{ asset('public/images/Reports').'/'.$report->pdf_path }}"><i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i> {{ $report->pdf_path }}</a>
+                    <a href="{{ asset('images/Reports').'/'.$report->pdf_path }}"><i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i> {{ $report->pdf_path }}</a>
                   </td>
                 </tr>
                 @endforeach
@@ -120,17 +120,17 @@ input[type=checkbox] {
 @section('outer_script')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-<script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('public/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('public/vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
+<script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
 
-<script src="{{asset('public/js/lodash.min.js')}}"></script>
-<script src="{{asset('public/js/axios.min.js')}}"></script>
-<script src="{{asset('public/js/vue.min.js')}}"></script>
+<script src="{{asset('js/lodash.min.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
 <script src="https://unpkg.com/vue-swal"></script>
-<script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-<script src="{{asset('public/js/InspectionReports/externalIndex.js')}}"></script>
+<script src="{{asset('js/vue-select-latest.js')}}"></script>
+<script src="{{asset('js/InspectionReports/externalIndex.js')}}"></script>
 
 <script>
 

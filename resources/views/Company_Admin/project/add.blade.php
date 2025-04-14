@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-<style src="{{asset('public/select2/dist/css/select2.min.css')}}"></style>
+<style src="{{asset('select2/dist/css/select2.min.css')}}"></style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -85,7 +85,7 @@ thead {
   border: 1px solid;
 }
 </style>
-<link href="{{asset('public/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+<link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 
@@ -585,15 +585,15 @@ thead {
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-<script src="{{asset('public/js/vue.min.js')}}"></script>
-<script src="{{asset('public/js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
+<script src="{{asset('js/vue.min.js')}}"></script>
+<script src="{{asset('js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
 <script type="text/javascript">
 
 </script>
-<script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-<script src="{{asset('public/js/lodash.min.js')}}"></script>
-<script src="{{asset('public/js/axios.min.js')}}"></script>
-<script src="{{asset('public/js/vue-select-latest.js')}}"></script>
+<script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('js/lodash.min.js')}}"></script>
+<script src="{{asset('js/axios.min.js')}}"></script>
+<script src="{{asset('js/vue-select-latest.js')}}"></script>
 
 <script src="https://unpkg.com/vue-swal"></script>
 {{--Key by it@cappah.com start--}}
@@ -615,7 +615,7 @@ thead {
 {{--<script--}}
 {{--        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrK_NSUqXJCfquvxkwW-Al_EnltT7i7-c&callback=initMap&libraries=places&v=weekly"></script>--}}
 
-<script src="{{asset('public/js/add_project.js')}}"></script>
+<script src="{{asset('js/add_project.js')}}"></script>
 @endsection
 
 <!-- Content Header (Page header) -->

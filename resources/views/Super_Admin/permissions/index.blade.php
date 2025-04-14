@@ -58,9 +58,9 @@
 
 @section('outer_script')
 
-<script src="{{asset('public/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{asset('public/dist/js/demo.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('dist/js/demo.js')}}"></script>
 <script>
 
 ///////////////// Below block is used to localize DataTable data //////////////

@@ -72,7 +72,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/01-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/01-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Threads</h4>
@@ -86,7 +86,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/02-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/02-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Explore</h4>
@@ -100,7 +100,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/03-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/03-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Finish</h4>
@@ -114,7 +114,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/04-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/04-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Lines</h4>
@@ -128,7 +128,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/05-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/05-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Southwest</h4>
@@ -142,7 +142,7 @@
                             <i class="fas fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img class="img-fluid" src="{{ asset('public/landing_page/img/portfolio/06-thumbnail.jpg') }}" alt="">
+                    <img class="img-fluid" src="{{ asset('landing_page/img/portfolio/06-thumbnail.jpg') }}" alt="">
                 </a>
                 <div class="portfolio-caption">
                     <h4>Window</h4>
@@ -651,7 +651,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/01-full.jpg') }}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/01-full.jpg') }}" alt="">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -685,7 +685,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/02-full.jpg') }}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/02-full.jpg') }}" alt="">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -719,7 +719,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/03-full.jpg') }}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/03-full.jpg') }}" alt="">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -753,7 +753,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/04-full.jpg') }}" alt="04-full.jpg">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/04-full.jpg') }}" alt="04-full.jpg">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -787,7 +787,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/05-full.jpg') }}" alt="5-full.jpg">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/05-full.jpg') }}" alt="5-full.jpg">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -821,7 +821,7 @@
                             <!-- Project Details Go Here -->
                             <h2 class="text-uppercase">Project Name</h2>
                             <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('public/landing_page/img/portfolio/06-full.jpg') }}" alt="">
+                            <img class="img-fluid d-block mx-auto" src="{{ asset('landing_page/img/portfolio/06-full.jpg') }}" alt="">
                             <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                             <ul class="list-inline">
                                 <li>Date: January 2017</li>
@@ -853,7 +853,7 @@
             </div>
 {{--            <div class="modal-body">--}}
                 <video id="myVideo" width="470" height="440" style="margin-left: 10px" autoplay controls >
-                    <source src="{{asset('public/images/Ahead Cleaning Mobile App Dutch (3).mp4')}}" type="video/mp4">
+                    <source src="{{asset('images/Ahead Cleaning Mobile App Dutch (3).mp4')}}" type="video/mp4">
 {{--                    <source src="movie.ogg" type="video/ogg">--}}
                 </video>
 {{--            </div>--}}

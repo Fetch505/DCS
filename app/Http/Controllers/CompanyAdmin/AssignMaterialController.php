@@ -103,7 +103,7 @@ class AssignMaterialController extends Controller
             if (!$filePath) {
                 return response()->json(['error' => 'Failed to save paymentProof file.'], 422);
             }
-            $filePath = asset('public/paymentProof/' . $fileName);
+            $filePath = asset('paymentProof/' . $fileName);
         }
 
         // Process quantities data

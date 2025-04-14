@@ -66,11 +66,11 @@
   </div>
 
   @section('outer_script')
-    <script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
-    <script src="{{asset('public/dist2/js/sb-admin-2.js')}}"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
+    <script src="{{asset('dist2/js/sb-admin-2.js')}}"></script>
   <script>
 
   ///////////////// Below block is used to localize DataTable data //////////////

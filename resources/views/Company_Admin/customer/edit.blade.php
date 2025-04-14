@@ -105,5 +105,5 @@
   </div>
 
   @section('outer_script')
-  <script src="{{asset('public/js/Customer/editJquery.js')}}"></script>
+  <script src="{{asset('js/Customer/editJquery.js')}}"></script>
   @endsection

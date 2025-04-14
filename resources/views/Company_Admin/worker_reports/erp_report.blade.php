@@ -215,9 +215,9 @@
 
 @section('outer_script')
 
-    <script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/js/worker_report.js')}}"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/worker_report.js')}}"></script>
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>

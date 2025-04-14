@@ -25,7 +25,7 @@
       <div class="modal-body">
         <!--- add your video code here --->
         <video id="myVideo" width="470" height="440" style="margin-left: 10px" autoplay controls >
-            <source src="{{asset('public/images/DCS Video.mp4')}}" type="video/mp4">
+            <source src="{{asset('images/DCS Video.mp4')}}" type="video/mp4">
         </video>
       </div>
       <div class="modal-footer">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 text-center text-lg-start">
-                        <img class="img-fluid rounded animated zoomIn" src="{{asset('public/new_landing_page/img/head-image.png')}}" alt="">
+                        <img class="img-fluid rounded animated zoomIn" src="{{asset('new_landing_page/img/head-image.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -70,39 +70,39 @@
             <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h1 class="mb-3">{{__('clients.heading')}}</h1>
                 <section class="customer-logos slider">
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/akor-bouw.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/balast-nedam-logo-1-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/BAM-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Bebouw-Midreth.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/DuraVermeer-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Era-bouw.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Giesbers.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Heerkens-van-Bavel.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/heijmans-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Heutink.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Hillen-Roosen.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/HSB-Bouw-Logo.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Logo-Berghege.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Logo-Klok-Groep.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Logo-van-Arnhem-Bouwgroep.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/LOGO_HURKS-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Moonen.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Oomsbouw-logo.png')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Pellikaan.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Pleijsier-bouw.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Remmers.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Slokker.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/slokker-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Ten-Brinke.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Trebbe-bouw.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/van-de-Ven.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Van-Omme-en-De-Groot-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/van-schijndel.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/vast-bouw.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/VolkerWessels-320x202.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Vorm.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Waal.jpg')}}"></div>
-                    <div class="slide"><img src="{{asset('public/new_landing_page/img/clients/Zublin.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/akor-bouw.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/balast-nedam-logo-1-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/BAM-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Bebouw-Midreth.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/DuraVermeer-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Era-bouw.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Giesbers.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Heerkens-van-Bavel.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/heijmans-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Heutink.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Hillen-Roosen.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/HSB-Bouw-Logo.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Logo-Berghege.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Logo-Klok-Groep.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Logo-van-Arnhem-Bouwgroep.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/LOGO_HURKS-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Moonen.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Oomsbouw-logo.png')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Pellikaan.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Pleijsier-bouw.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Remmers.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Slokker.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/slokker-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Ten-Brinke.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Trebbe-bouw.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/van-de-Ven.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Van-Omme-en-De-Groot-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/van-schijndel.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/vast-bouw.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/VolkerWessels-320x202.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Vorm.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Waal.jpg')}}"></div>
+                    <div class="slide"><img src="{{asset('new_landing_page/img/clients/Zublin.jpg')}}"></div>
                 </section>
             </div>
         </div>
@@ -209,7 +209,7 @@
                     <a href="" style="background-color: #42CD34; color: #FFFFFF;" class="btn py-sm-3 px-sm-5 rounded-pill mt-3">{{__('description.read_more')}}</a>
                 </div>
                 <div class="col-lg-6">
-                    <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.5s" src="{{asset('public/new_landing_page/img/pc-dcs.png')}}">
+                    <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.5s" src="{{asset('new_landing_page/img/pc-dcs.png')}}">
                 </div>
             </div>
         </div>
@@ -222,7 +222,7 @@
         <div class="container">
             <div class="row g-5 py-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="{{asset('public/new_landing_page/img/dcs-app.png')}}">
+                    <img class="img-fluid rounded" src="{{asset('new_landing_page/img/dcs-app.png')}}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="d-flex align-items-center mb-4">
@@ -254,12 +254,12 @@
                     <p><i style="color: #42CD34;" class="fa fa-check-circle me-3"></i>{{__('02.p5')}}</p>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="{{asset('public/new_landing_page/img/dcs-custom-app.png')}}">
+                    <img class="img-fluid rounded" src="{{asset('new_landing_page/img/dcs-custom-app.png')}}">
                 </div>
             </div>
             <div class="row g-5 py-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="{{asset('public/new_landing_page/img/dcs-software.png')}}">
+                    <img class="img-fluid rounded" src="{{asset('new_landing_page/img/dcs-software.png')}}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="d-flex align-items-center mb-4">
@@ -314,7 +314,7 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <img class="img-fluid rounded" src="{{asset('public/new_landing_page/img/head-image.png')}}">
+                    <img class="img-fluid rounded" src="{{asset('new_landing_page/img/head-image.png')}}">
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <h1 class="mb-4">{{__('description2.heading')}}</h1>

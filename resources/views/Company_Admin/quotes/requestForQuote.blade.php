@@ -2,7 +2,7 @@
 
 
 @section('outer_css')
-<style src="{{asset('public/select2/dist/css/select2.min.css')}}"></style>
+<style src="{{asset('select2/dist/css/select2.min.css')}}"></style>
 <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
 <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
 
@@ -133,14 +133,14 @@
 
   @section('outer_script')
 
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-  <script src="{{asset('public/js/lodash.min.js')}}"></script>
-  <script src="{{asset('public/js/axios.min.js')}}"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
-  <!-- <script src="{{asset('public/js/vue-swal.js')}}"></script> -->
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/lodash.min.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
+  <!-- <script src="{{asset('js/vue-swal.js')}}"></script> -->
   <script src="https://unpkg.com/vue-swal"></script>
-  <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('public/js/quotes/RFQ.js')}}"></script>
+  <script src="{{asset('js/vue-select-latest.js')}}"></script>
+  <script src="{{asset('js/quotes/RFQ.js')}}"></script>
 
   @endsection
 <!-- Content Header (Page header) -->

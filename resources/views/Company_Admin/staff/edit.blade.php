@@ -222,12 +222,12 @@
   <script>
     var userId = {{ $user->id }};
   </script>
-  <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-  <script src="{{asset('public/js/axios.min.js')}}"></script>
-  <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('public/js/vue.min.js')}}"></script>
+  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+  <script src="{{asset('js/axios.min.js')}}"></script>
+  <script src="{{asset('js/vue-select-latest.js')}}"></script>
+  <script src="{{asset('js/vue.min.js')}}"></script>
   <script type="text/javascript"></script>
   <script src="https://unpkg.com/vue-swal"></script>
-  <script src="{{asset('public/js/staff/edit.js')}}"></script>
-  <script src="{{asset('public/js/staff/editJquery.js')}}"></script>
+  <script src="{{asset('js/staff/edit.js')}}"></script>
+  <script src="{{asset('js/staff/editJquery.js')}}"></script>
 @endsection

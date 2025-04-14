@@ -1,7 +1,7 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <link href="{{asset('public/multiple-select/multiple-select.css')}}" rel="stylesheet"/>
+  <link href="{{asset('multiple-select/multiple-select.css')}}" rel="stylesheet"/>
 @endsection
 
 @section('title', 'Dashboard')
@@ -43,7 +43,7 @@
 @endsection
 
   @section('outer_script')
-  <script src="{{asset('public/multiple-select/multiple-select.js')}}"></script>
+  <script src="{{asset('multiple-select/multiple-select.js')}}"></script>
   <script>
         $('#multi-select').multipleSelect({
           isOpen: true,

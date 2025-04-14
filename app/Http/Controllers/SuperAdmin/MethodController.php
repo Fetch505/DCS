@@ -58,7 +58,7 @@ class MethodController extends Controller
     $filename = $name . '_' . time() . '.' . $extension;
 
     if ($file->move(public_path('methods'), $filename)) {
-        $video_url = asset('public/methods/' . $filename);
+        $video_url = asset('methods/' . $filename);
 
         $method = new Methods;
         $method->category_id = $request->category_id;
@@ -113,11 +113,11 @@ class MethodController extends Controller
         $video_name = $file->getClientOriginalName();
         $name = pathinfo($video_name, PATHINFO_FILENAME);
         $extension = pathinfo($video_name, PATHINFO_EXTENSION);
-        $filepath = URL::asset('public/methods/');
+        $filepath = URL::asset('methods/');
         $filename = $name . '_' . time() . '.' . $extension;
 
         try{
-          $video_url = asset('public/methods/' . $filename);
+          $video_url = asset('methods/' . $filename);
           $method->video_url      = $video_url;
           $method->save();
 

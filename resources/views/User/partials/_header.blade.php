@@ -8,18 +8,18 @@
     <title>Advance Cleaning - @yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('public/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{{asset('public/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('public/dist2/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('dist2/css/sb-admin-2.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{{asset('public/vendor/morrisjs/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/morrisjs/morris.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{asset('public/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
     @yield('outer_css')

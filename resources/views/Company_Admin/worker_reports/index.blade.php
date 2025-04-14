@@ -262,15 +262,15 @@
 
 @section('outer_script')
 
-    <script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('public/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('public/select2/dist/js/select2.min.js')}}"></script>
-    <script src="{{asset('public/js/axios.min.js')}}"></script>
-    <script src="{{asset('public/js/vue-select-latest.js')}}"></script>
-    <script src="{{asset('public/js/vue.min.js')}}"></script>
+    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
+    <script src="{{asset('js/axios.min.js')}}"></script>
+    <script src="{{asset('js/vue-select-latest.js')}}"></script>
+    <script src="{{asset('js/vue.min.js')}}"></script>
     <script type="text/javascript"></script>
     <script src="https://unpkg.com/vue-swal"></script>
-    <script src="{{asset('public/js/worker_report.js')}}"></script>
+    <script src="{{asset('js/worker_report.js')}}"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>

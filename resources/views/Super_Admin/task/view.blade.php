@@ -1,7 +1,7 @@
 @extends('Super_Admin.layouts.admin')
 
 @section('outer_css')
-  <link href="{{asset('public/multiple-select/multiple-select.css')}}" rel="stylesheet"/>
+  <link href="{{asset('multiple-select/multiple-select.css')}}" rel="stylesheet"/>
 @endsection
 
 @section('title', 'Dashboard')
