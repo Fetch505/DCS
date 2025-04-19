@@ -11,9 +11,9 @@
 
 @section('title', 'Dashboard')
 
-<div id="wrapper">
+<div id="wrapper" >
   @section('content')
-  <div id="app" v-cloak>
+  <div id="app" v-cloak style="padding:30px;" >
     <input type="hidden" ref="language" value="{{App::getLocale()}}">
     <div class="row">
       <div class="col-sm-8">

@@ -10,9 +10,9 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
-
-  <div id="wrapper">
-    @section('content')
+@section('content')
+  <div id="wrapper " style="padding:30px;" >
+   
     <div class="row">
       <div class="col-sm-8">
         <h1>@lang('common.Health And Safety Management')</h1>
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-4">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -30,24 +30,32 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <table width="100%" id="table" class="table table-bordered table-striped table-hover">
+                  <table id="table" class="table table-bordered table-striped table-hover" style="width:100%;">
                         <thead>
                             <tr>
-                                <th>@lang('Company_Admin/dashboard.Sr #')</th>
-                                <th>@lang('common.Category')</th>
-                                <th>@lang('Company_Admin/dashboard.Title')</th>
-                                <th data-orderable="false">@lang('Company_Admin/dashboard.Description')</th>
-                                <th data-orderable="false"></th>
+                                <th style="width:5%;"       >@lang('Company_Admin/dashboard.Sr #')</th>
+                                <th style="min-width:100px;">@lang('common.Category')</th>
+                                <th style="min-width:200px;">@lang('Company_Admin/dashboard.Title')</th>
+                                <th style="min-width:300px;" data-orderable="false">@lang('Company_Admin/dashboard.Description')</th>
+                                <th style="width:10%;">@lang('Company_Admin/dashboard.Status')</th>
+                                <th style="width:10%;"        data-orderable="false"></th>
                             </tr>
                         </thead>
                         <tbody>
                           @foreach ($healths as $key => $health)
                             <tr>
-                                <td>{{ ++$key}}</td>
+                                <td class="text-center">{{ ++$key}}</td>
                                 <td>{{ $health->category_id ? $health->category->name : '' }}</td>
                                 <td>{{ $health->title }}</td>
                                 <td>{{ $health->description }}</td>
-                                <td style="text-align:center">
+                                <td class="text-center">
+                                  @if ($health->status == 1)
+                                    <span class="badge badge-success">@lang('common.Active')</span>
+                                  @else
+                                    <span class="badge badge-danger">@lang('common.Inactive')</span>
+                                  @endif
+                                </td>
+                                <td style="text-align:center ">
                                   <a href="#" title="View Video" class="view-icon" data-toggle="modal" data-target="#myModal" data-video-url="{{ $health->video_url }}" >
                                     <i class="fa fa-eye view-icon" style="color:blue"></i>
                                   </a>
@@ -85,9 +93,9 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    @endsection
+   
   </div>
-
+  @endsection
   @section('outer_script')
   <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
@@ -177,5 +185,26 @@
   }
 </script>
 
+
+<style>
+  #table th, #table td {
+    vertical-align: middle !important;
+  }
+  #table th {
+    white-space: nowrap;
+  }
+  .modal-lg {
+    max-width: 90%;
+  }
+  .modal-body {
+    overflow-x: auto;
+  }
+  .modal-body img,
+  .modal-body video,
+  .modal-body embed {
+    max-width: 100%;
+    height: auto;
+  }
+  </style>
   @endsection
 <!-- Content Header (Page header) -->

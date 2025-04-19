@@ -14,7 +14,8 @@ class CreateModulePricesTable extends Migration
     public function up()
     {
         Schema::create('module_prices', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+
             $table->string('module_name');
             $table->decimal('price', 8, 2); // You can adjust the fields based on your requirements
             $table->timestamps();
