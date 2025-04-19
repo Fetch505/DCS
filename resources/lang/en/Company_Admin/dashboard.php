@@ -119,7 +119,7 @@ return [
     'Calculation' => 'Calculation',
     'Customers' => 'Customers',
     'Customer' => 'Customer',
-    'Customer name' => 'Customer name',
+    'Customer Name' => 'Customer Name',
     'Place Order' => 'Place order',
     'Projects' => 'Projects',
     'Project' => 'Project',
