@@ -43,6 +43,9 @@
                         </thead>
                         <tbody>
                           @foreach ($healths as $key => $health)
+                          <script>
+                            console.log(@json($health));
+                        </script>
                             <tr>
                                 <td class="text-center">{{ ++$key}}</td>
                                 <td>{{ $health->category_id ? $health->category->name : '' }}</td>
@@ -50,9 +53,9 @@
                                 <td>{{ $health->description }}</td>
                                 <td class="text-center">
                                   @if ($health->status == 1)
-                                    <span class="badge badge-success">@lang('common.Active')</span>
+                                    <span class="badge badge-success">Active</span>
                                   @else
-                                    <span class="badge badge-danger">@lang('common.Inactive')</span>
+                                    <span class="badge badge-danger">Inactive</span>
                                   @endif
                                 </td>
                                 <td style="text-align:center ">

@@ -30,6 +30,7 @@ class HealthAndSafetyController extends Controller
     public function index()
     {
       $healths = HealthAndSafety::all();
+      
       return view('Super_Admin.health_and_safety.index')->withHealths($healths);
     }
 
@@ -100,78 +101,82 @@ class HealthAndSafetyController extends Controller
         HealthAndSafety::where('id','=',$health->id)->delete();
         return redirect()->route('health.index');
     }
-
     public function update(Request $request, HealthAndSafety $health)
     {
-      $request->validate([
-        'category_id' => 'required',
-        'title' => 'required|max:255',
-        'description' => 'required|max:255',
-      ]);
-
-      $category = HealthCategory::pluck('name','id');
-      if ($request->hasFile('file') == null){
-          $health                 = HealthAndSafety::where('id','=',$health->id)->first();
-          $health->category_id    = $request->category_id;
-          $health->title          = $request->title;
-          $health->description    = $request->description;
-          $health->updated_at     = carbon::now();
-          $health->save();
-
-          if (App::getLocale() == "en") {
-            Session::flash('success','updated successfully');
-          }else {
-            Session::flash('success','succesvol updated');
-          }
-
-          return view('Super_Admin.health_and_safety.edit', [
-            'health' => $health,
-            'category' => $category,
-            'exception' => false,
-          ]);
-      }
-      else
-      {
-        $file     = $request->file('file');
-        $video_name = $file->getClientOriginalName();
-        $name = pathinfo($video_name, PATHINFO_FILENAME);
-        $extension = pathinfo($video_name, PATHINFO_EXTENSION);
-        $filename = $name . '_' . time() . '.' . $extension;
-        $video_url = asset('health_and_safety/' . $filename);
-        $oldfilename = $request->file_name;
-        $oldfilepath = public_path('health_and_safety/' . $oldfilename);
-
-        try{
-          $health                 = HealthAndSafety::where('id','=',$health->id)->first();
-          $health->category_id    = $request->category_id;
-          $health->title          = $request->title;
-          $health->description    = $request->description;
-          $health->video_url      = $video_url;
-          $health->updated_at     = carbon::now();
-          $health->save();
-
-          $videoPath = $file->move(public_path('health_and_safety'), $filename);
-          File::delete($oldfilepath);
-
-          if (App::getLocale() == "en") {
-            Session::flash('success','updated successfully');
-          }else {
-            Session::flash('success','succesvol updated');
-          }
-          return view('Super_Admin.health_and_safety.edit', [
-            'health' => $health,
-            'category' => $category,
-            'exception' => false,
-          ]);
+        $request->validate([
+            'category_id' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'status' => 'required|boolean', // <-- validate status too
+        ]);
+    
+        $category = HealthCategory::pluck('name','id');
+    
+        if (!$request->hasFile('file')) {
+            $health = HealthAndSafety::findOrFail($health->id);
+            $health->category_id = $request->category_id;
+            $health->title = $request->title;
+            $health->description = $request->description;
+            $health->status = $request->status; // <-- Save status
+            $health->updated_at = now();
+            $health->save();
+    
+            if (App::getLocale() == "en") {
+                Session::flash('success', 'Updated successfully');
+            } else {
+                Session::flash('success', 'Succesvol updated');
+            }
+    
+            return view('Super_Admin.health_and_safety.edit', [
+                'health' => $health,
+                'category' => $category,
+                'exception' => false,
+            ]);
+        } else {
+            $file = $request->file('file');
+            $video_name = $file->getClientOriginalName();
+            $name = pathinfo($video_name, PATHINFO_FILENAME);
+            $extension = pathinfo($video_name, PATHINFO_EXTENSION);
+            $filename = $name . '_' . time() . '.' . $extension;
+            $video_url = asset('health_and_safety/' . $filename);
+    
+            $oldfilename = $request->file_name;
+            $oldfilepath = public_path('health_and_safety/' . $oldfilename);
+    
+            try {
+                $health = HealthAndSafety::findOrFail($health->id);
+                $health->category_id = $request->category_id;
+                $health->title = $request->title;
+                $health->description = $request->description;
+                $health->status = $request->status; // <-- Save status
+                $health->video_url = $video_url;
+                $health->updated_at = now();
+                $health->save();
+    
+                $file->move(public_path('health_and_safety'), $filename);
+                File::delete($oldfilepath);
+    
+                if (App::getLocale() == "en") {
+                    Session::flash('success', 'Updated successfully');
+                } else {
+                    Session::flash('success', 'Succesvol updated');
+                }
+    
+                return view('Super_Admin.health_and_safety.edit', [
+                    'health' => $health,
+                    'category' => $category,
+                    'exception' => false,
+                ]);
+            } catch (\Exception $e) {
+                File::delete(public_path('health_and_safety/' . $filename));
+                Log::error('An error occurred: ' . $e->getMessage());
+    
+                return view('Super_Admin.health_and_safety.edit', [
+                    'health' => $health,
+                    'exception' => true,
+                ]);
+            }
         }
-        catch (\Exception $e) {
-          File::delete($video_url);
-          Log::error('An error occurred: ' . $e->getMessage());
-          return view('Super_Admin.health_and_safety.edit', [
-            'health' => $health,
-            'exception' => true,
-          ]);
-        }
-      }
     }
+    
 }

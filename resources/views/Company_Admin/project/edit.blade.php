@@ -344,13 +344,13 @@ thead {
                               <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                   <th>@lang('Company_Admin/dashboard.Locations')</th>
-                                  <th></th>
+                                 
                                 </thead>
                                 <tbody>
                                   <tr v-for="(location,index) in locations">
                                     <td>@{{location.name}}</td>
                                     <!--td> <button type="button" class="btn btn-danger btn-md" name="button" @click.prevent="removeLocation(index)"><i class="fa fa-pencil" aria-hidden="true"></i></button> </td-->
-                                    <td><button type="button" class="btn btn-info btn-md" data-toggle="collapse" data-target="#collapseTwo"> <i class="fa fa-pencil" aria-hidden="true"></i></button></td>
+                                    
                                   </tr>
                                 </tbody>
                               </table>
@@ -360,40 +360,7 @@ thead {
                 </div>
               </div>
 
-              <div class="form-group row">
-                <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Update') @lang('Company_Admin/dashboard.Locations'):*</label>
-
-                <div class="col-md-8">
-                  <div class="panel-group  row" id="accordion">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                        </h4>
-                      </div>
-
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                      <div class="panel-body">
-                        <div class="field_wrapper">
-                            <div class="col-md-10 table-responsive">
-                              <div id="map" style="height: 300px; width: 500px"></div>
-                              <div id="type-selector" class="controls col-md-2">
-                                <input type="radio" name="type" id="changetype-all" checked="checked">
-                                <label for="changetype-all">All</label>
-                              </div>
-                              <input id="pac-input" class="controls" type="text" placeholder="Enter a location" :disabled="isInputDisabled">
-                            </div>
-                            <div class="col-md-2" v-show="locations.length > 0">
-                              <button href="#" class="btn btn-info btn-md" title="Add field" @click.prevent="addMoreLocation">+ @lang('Company_Admin/dashboard.Add Location')</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>

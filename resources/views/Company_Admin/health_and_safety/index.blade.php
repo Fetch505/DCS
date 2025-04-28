@@ -27,17 +27,19 @@
             </thead>
             <tbody>
               @foreach ($healths as $key => $health)
-              <tr>
-                <td class="text-center">{{ ++$key }}</td>
-                <td>{{ $health->category_id ? $health->category->name : '-' }}</td>
-                <td>{{ $health->title ?? '-' }}</td>
-                <td>{{ $health->description ?? '-' }}</td>
-                <td class="text-center">
-                  <a href="#" title="@lang('common.View File')" class="view-icon" data-toggle="modal" data-target="#myModal" data-video-url="{{ $health->video_url }}">
-                    <i class="fa fa-eye text-primary"></i>
-                  </a>
-                </td>
-              </tr>
+                @if($health->status == 1)
+                <tr>
+                  <td class="text-center">{{ ++$key }}</td>
+                  <td>{{ $health->category_id ? $health->category->name : '-' }}</td>
+                  <td>{{ $health->title ?? '-' }}</td>
+                  <td>{{ $health->description ?? '-' }}</td>
+                  <td class="text-center">
+                    <a href="#" title="@lang('common.View File')" class="view-icon" data-toggle="modal" data-target="#myModal" data-video-url="{{ $health->video_url }}">
+                      <i class="fa fa-eye text-primary"></i>
+                    </a>
+                  </td>
+                </tr>
+                @endif
               @endforeach
             </tbody>
           </table>

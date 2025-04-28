@@ -10,9 +10,9 @@
   @section('content')
   <div id="app" v-cloak>
     @if ($exception)
-    <div class="alert alert-danger">
-    @lang( "An error occurred. Please try again later." )
-    </div>
+      <div class="alert alert-danger">
+        @lang("An error occurred. Please try again later.")
+      </div>
     @endif
 
     <input type="hidden" ref="language" value="{{App::getLocale()}}">
@@ -29,93 +29,93 @@
             @lang('common.Update')
           </div>
           <div class="panel-body">
-            {{ Form::model($health,['route' => ['health.update',$health->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data' ,'data-parsley-validate' => '']) }}
-              <input type="hidden" id="language" value="{{App::getLocale()}}">
-              
-              <div class="form-group row"  id="category">
-                <label class="col-md-2" for="">@lang('common.Category'):</label>
-                <div class="col-md-8">
-                  {{ Form::select('category_id', $category, $health->category_id ? $health->category_id : null, ['class' => 'form-control','id' => 'multi-select2', 'placeholder' => 'Select Category'])}}
-                  </div>
-              </div>
+            {{ Form::model($health, ['route' => ['health.update', $health->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'data-parsley-validate' => '']) }}
+            <input type="hidden" id="language" value="{{App::getLocale()}}">
 
-              <div class="form-group row">
-              <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Title'):*</label>
-                <div class="col-md-8">
-                  {{ Form::text('title',($health->title)? $health->title :  null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
-                </div>
+            <div class="form-group row" id="category">
+              <label class="col-md-2">@lang('common.Category'):</label>
+              <div class="col-md-8">
+                {{ Form::select('category_id', $category, $health->category_id ?? null, ['class' => 'form-control', 'id' => 'multi-select2', 'placeholder' => 'Select Category']) }}
               </div>
-
-              <div class="form-group row">
-                <label  class="col-md-2" for="">@lang('Company_Admin/dashboard.Description'):*</label>
-                <div class="col-md-8">
-                  {{ Form::text('description', ($health->description)? $health->description : null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label  class="col-md-2" for="">@lang('Company_Admin/dashboard.Select') @lang('Company_Admin/dashboard.Video'):*</label>
-                <div class="col-md-4">
-                  {{ Form::text('file_name', basename($health->video_url), ['class' => 'form-control', 'readonly' => 'readonly']) }}
-                  
-                  @if (strpos($health->video_url, '.mp4') !== false || strpos($health->video_url, '.avi') !== false || strpos($health->video_url, '.mov') !== false || strpos($health->video_url, '.wmv') !== false)
-                    <div class="video-container" style="position: relative; width: 100%; padding-bottom: 56.25%;">
-                      <video class="video-fluid modal-video" controls autoplay style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                        <source src="{{ asset($health->video_url) }}" type="video/mp4">  
-                      </video>
-                    </div>
-                  @elseif (strpos($health->video_url, '.pdf') !== false)
-                    <div class="pdf-container" style="position: relative; width: 100%; padding-bottom: 100%;">
-                      <embed src="{{ asset($health->video_url) }}" type="application/pdf" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                    </div>
-                  @elseif (strpos($health->video_url, '.jpg') !== false || strpos($health->video_url, '.jpeg') !== false || strpos($health->video_url, '.png') !== false)
-                    <div class="image-container"  style="position: relative; width: 100%; padding-bottom: 56.25%;">
-                      <img src="{{ asset($health->video_url) }}" alt="Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                    </div>
-                  @else
-                    <p>Unsupported file type. Unable to display the file.</p>
-                  @endif
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label  class="col-md-2" for="">@lang('Company_Admin/dashboard.Update') @lang('Company_Admin/dashboard.Video'):</label>
-                <div class="col-md-4">
-                  {{ Form::file('file', ['class' => 'form-control', ]) }}
-                </div>
-              </div>
-              <br />
-              
-              <div class="inline pull-right">
-                <button type="submit" class="btn btn-success">@lang('Company_Admin/dashboard.Save')</button>
-                <a href="{{ route('health.index') }}" type="button" class="btn btn-danger">@lang('Company_Admin/dashboard.Cancel')</a>
-              </div>
-              {{ Form::close() }}
-
             </div>
+
+            <!-- Added Status Field -->
+            <div class="form-group row">
+              <label class="col-md-2">@lang('common.Status'):</label>
+              <div class="col-md-8">
+                {{ Form::select('status', [1 => 'Active', 0 => 'Inactive'], $health->status ?? 1, ['class' => 'form-control', 'required' => 'required']) }}
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-2">@lang('Company_Admin/dashboard.Title'):*</label>
+              <div class="col-md-8">
+                {{ Form::text('title', $health->title ?? null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-2">@lang('Company_Admin/dashboard.Description'):*</label>
+              <div class="col-md-8">
+                {{ Form::text('description', $health->description ?? null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-2">@lang('Company_Admin/dashboard.Select') @lang('Company_Admin/dashboard.Video'):*</label>
+              <div class="col-md-4">
+                {{ Form::text('file_name', basename($health->video_url), ['class' => 'form-control', 'readonly' => 'readonly']) }}
+
+                @if (strpos($health->video_url, '.mp4') !== false || strpos($health->video_url, '.avi') !== false || strpos($health->video_url, '.mov') !== false || strpos($health->video_url, '.wmv') !== false)
+                  <div class="video-container" style="position: relative; width: 100%; padding-bottom: 56.25%;">
+                    <video class="video-fluid modal-video" controls autoplay style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <source src="{{ asset($health->video_url) }}" type="video/mp4">
+                    </video>
+                  </div>
+                @elseif (strpos($health->video_url, '.pdf') !== false)
+                  <div class="pdf-container" style="position: relative; width: 100%; padding-bottom: 100%;">
+                    <embed src="{{ asset($health->video_url) }}" type="application/pdf" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                  </div>
+                @elseif (strpos($health->video_url, '.jpg') !== false || strpos($health->video_url, '.jpeg') !== false || strpos($health->video_url, '.png') !== false)
+                  <div class="image-container" style="position: relative; width: 100%; padding-bottom: 56.25%;">
+                    <img src="{{ asset($health->video_url) }}" alt="Image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                  </div>
+                @else
+                  <p>Unsupported file type. Unable to display the file.</p>
+                @endif
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-md-2">@lang('Company_Admin/dashboard.Update') @lang('Company_Admin/dashboard.Video'):</label>
+              <div class="col-md-4">
+                {{ Form::file('file', ['class' => 'form-control']) }}
+              </div>
+            </div>
+
+            <br/>
+
+            <div class="inline pull-right">
+              <button type="submit" class="btn btn-success">@lang('Company_Admin/dashboard.Save')</button>
+              <a href="{{ route('health.index') }}" type="button" class="btn btn-danger">@lang('Company_Admin/dashboard.Cancel')</a>
+            </div>
+            {{ Form::close() }}
           </div>
+        </div>
       </div>
+    </div>
   </div>
-</div>
-@endsection
+  @endsection
 </div>
 
-  @section('outer_script')
+@section('outer_script')
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
   <script src="{{asset('js/vue.min.js')}}"></script>
   <script src="{{asset('js/test/dist/vue-phone-number-input.umd.min.js')}}" charset="utf-8"></script>
-  <script type="text/javascript">
-
-  </script>
   <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
   <script src="{{asset('js/lodash.min.js')}}"></script>
   <script src="{{asset('js/axios.min.js')}}"></script>
   <script src="{{asset('js/vue-select-latest.js')}}"></script>
-  <script src="{{asset('js/vue.min.js')}}"></script>
-
   <script src="https://unpkg.com/vue-swal"></script>
-
   <script src="{{asset('js/Method/edit.js')}}"></script>
-  @endsection
-
-<!-- Content Header (Page header) -->
+@endsection
