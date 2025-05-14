@@ -29,7 +29,7 @@
                 <th>@lang('common.Category')</th>
                 <th>@lang('Company_Admin/dashboard.Title')</th>
                 <th>@lang('Company_Admin/dashboard.Description')</th>
-                
+              
               </tr>
             </thead>
             <tbody>

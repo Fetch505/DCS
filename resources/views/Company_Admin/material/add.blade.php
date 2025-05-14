@@ -1,133 +1,184 @@
 @extends('Company_Admin.layouts.main')
 
 @section('outer_css')
-  <link href="{{asset('select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/parsleyjs/src/parsley.css" rel="stylesheet" />
 @endsection
 
 @section('title', 'Dashboard')
 
-  <div id="wrapper">
+<div id="wrapper">
     @section('content')
-    <div class="row">
-      <div class="col-sm-8">
-        <h1>@lang('Company_Admin/dashboard.Materials') @lang('Company_Admin/dashboard.Management')</h1>
-      </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <h1>@lang('Company_Admin/dashboard.Materials') @lang('Company_Admin/dashboard.Management')</h1>
+            </div>
+        </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    @lang('Company_Admin/dashboard.Add') @lang('Company_Admin/dashboard.New') @lang('Company_Admin/dashboard.Material')
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                  <div class="">
-                    {{ Form::open(['route' => 'material.store', 'method' => 'POST', 'data-parsley-validate' => '']) }}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @lang('Company_Admin/dashboard.Add') @lang('Company_Admin/dashboard.New') @lang('Company_Admin/dashboard.Material')
+                    </div>
+                    <div class="panel-body">
+                        {{ Form::open(['route' => 'material.store', 'method' => 'POST', 'data-parsley-validate' => '', 'autocomplete' => 'off']) }}
+                        @csrf
 
-
-                      <div class="form-group row">
-                          <label  class="col-md-2" for="">@lang('common.Category'):</label>
-                          <div class="col-md-8">
-                            <select id="material_category" name="material_category"  class="form-control" onchange="populateTypes(this.value)">
-                              <option  selected disabled>Select Material Category</option>
-                              @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                              @endforeach
-                            </select>
-                          </div>
+                        {{-- Category --}}
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                @lang('common.Category'): <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <select id="material_category" name="material_category" class="form-control" required
+                                    onchange="populateTypes(this.value)"
+                                    data-parsley-required-message="Please select a material category.">
+                                    <option selected disabled value="">Select Material Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
-                      <div class="form-group row">
-                          <label  class="col-md-2" for="">@lang('Company_Admin/dashboard.Type'):</label>
-                          <div class="col-md-8">
-                            <select id="material_type" name="material_type" class="form-control">
-                                <option  selected disabled>Select Material Type</option>
-                            </select>
-                          </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Material') @lang('Company_Admin/dashboard.Name'):*</label>
-                          <div class="col-md-8">
-                            {{ Form::text('name', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
-                          </div>
+                        {{-- Type --}}
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                @lang('Company_Admin/dashboard.Type'): <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                <select id="material_type" name="material_type" class="form-control" required
+                                    data-parsley-required-message="Please select a material type.">
+                                    <option selected disabled value="">Select Material Type</option>
+                                </select>
+                            </div>
                         </div>
+
+                        {{-- Material Name --}}
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                @lang('Company_Admin/dashboard.Material') @lang('Company_Admin/dashboard.Name'): <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                {{ Form::text('name', null, [
+                                    'class' => 'form-control',
+                                    'required' => '',
+                                    'maxlength' => '255',
+                                    'placeholder' => 'Enter material name',
+                                    'aria-required' => 'true',
+                                ]) }}
+                            </div>
+                        </div>
+
+                        {{-- Price --}}
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                @lang('Company_Admin/dashboard.Price'): <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8">
+                                {{ Form::number('price', 0, [
+                                    'class' => 'form-control',
+                                    'required' => '',
+                                    'maxlength' => '255',
+                                    'min' => 0,
+                                    'placeholder' => 'Enter material price',
+                                    'aria-required' => 'true',
+                                ]) }}
+                            </div>
+                        </div>
+
+                        {{-- Quantity --}}
+                        <div class="form-group row">
+                            <label class="col-md-2 col-form-label">
+                                @lang('Company_Admin/dashboard.Unassigned') @lang('Company_Admin/dashboard.Quantity'):
+                            </label>
+                            <div class="col-md-8">
+                                {{ Form::number('quantity', 0, [
+                                    'class' => 'form-control',
+                                    'min' => 0,
+                                    'placeholder' => 'Enter quantity',
+                                ]) }}
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
-                          <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Price'):*</label>
-                          <!-- {{ Form::label('price', 'Price:*', ['class' => 'col-md-2 col-form-label']) }} -->
-                            <div class="col-md-8">
-                              {{ Form::text('price', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Unassigned') @lang('Company_Admin/dashboard.Quantity'):</label>
-                              <div class="col-md-8">
-                                {{ Form::number('quantity', 0, ['class' => 'form-control', 'min' => 0]) }}
-                              </div>
-                            </div>
-
-                          <div class="form-group row">
-                            <label class="col-md-2" for="">@lang('Company_Admin/dashboard.Suppliers'):*</label>
-                              <div class="col-md-8">
-                                <select class="form-control js-example-basic-multiple" name="suppliers[]" multiple="multiple">
-                                  @foreach ($suppliers as $key => $supplier)
-                                    <option value="{{$supplier->id}}">{{$supplier->name}}</option>
-                                  @endforeach
-                                </select>
-                              </div>
+                            <label class="col-md-2 col-form-label">
+                                @lang('Company_Admin/dashboard.Suppliers'): <span class="text-danger">*</span>
+                            </label>
+                            <div class="col-md-8" id="supplier-selects-container">
+                                <div class="mb-2 supplier-select">
+                                    <select name="suppliers[]" class="form-control" required
+                                        data-parsley-required-message="Please select a supplier.">
+                                        <option value="" disabled selected>Select Supplier</option>
+                                        @foreach ($suppliers as $supplier)
+                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
-
-
-                        <div class="inline pull-right">
-                          <button type="submit" class="btn btn-success">@lang('Company_Admin/dashboard.Add')</button>
-                          <a href="{{ route('material.index') }}" type="button" class="btn btn-danger">@lang('Company_Admin/dashboard.Cancel')</a>
                         </div>
 
-                    {{ Form::close() }}
-                  </div>
-
-                    <!-- /.table-responsive -->
+                        {{-- Buttons --}}
+                        <div class="form-group row">
+                            <div class="col-md-10 text-right">
+                                <button type="submit" class="btn btn-success">@lang('Company_Admin/dashboard.Add')</button>
+                                <a href="{{ route('material.index') }}" class="btn btn-danger">@lang('Company_Admin/dashboard.Cancel')</a>
+                            </div>
+                        </div>
+                        {{ Form::close() }}
+                    </div>
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-
     @endsection
-  </div>
+</div>
 
-  @section('outer_script')
-  <script src="{{asset('select2/dist/js/select2.min.js')}}"></script>
-  <script>
-    function populateTypes(categoryId) {
-        $.ajax({
-            url: APP_URL + '/getMaterialTypes/' + categoryId,
-            method: 'GET',
-            success: function(data) {
-              console.log(data);
-              var options = '<option selected disabled>Select Material Type </option>';
+@section('outer_script')
+    <script src="{{ asset('select2/dist/js/select2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs"></script>
 
-              // Iterate through the projects array and add options to the HTML string
-              $.each(data, function(key, value) {
-                options += '<option value="' + key + '">' + value + '</option>';
-              });
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Select suppliers",
+                allowClear: true,
+                width: '100%'
+            });
 
-              // Set the HTML of the project select element to the options string
-              $('#material_type').html(options);
-
-            },
-            error: function(xhr) {
-            console.log(xhr);
-            }
+            // Custom Parsley validation for select2 multi
+            $('form').on('submit', function() {
+                let selected = $('#suppliers').val();
+                if (!selected || selected.length === 0) {
+                    $('#supplier-error').text("Please select at least one supplier.");
+                    return false;
+                } else {
+                    $('#supplier-error').text("");
+                }
+            });
         });
-      }
-  </script>
-  @endsection
 
-<!-- Content Header (Page header) -->
+        function populateTypes(categoryId) {
+            $.ajax({
+                url: APP_URL + '/getMaterialTypes/' + categoryId,
+                method: 'GET',
+                success: function(data) {
+                    var options = '<option selected disabled>Select Material Type</option>';
+                    if (Object.keys(data).length === 0) {
+                        options += '<option disabled>No types found for selected category</option>';
+                    } else {
+                        $.each(data, function(key, value) {
+                            options += '<option value="' + key + '">' + value + '</option>';
+                        });
+                    }
+                    $('#material_type').html(options);
+                },
+                error: function(xhr) {
+                    console.log('Failed to load material types', xhr);
+                }
+            });
+        }
+    </script>
+@endsection
