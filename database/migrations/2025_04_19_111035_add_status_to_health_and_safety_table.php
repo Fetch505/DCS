@@ -13,9 +13,10 @@ class AddStatusToHealthAndSafetyTable extends Migration
      */
     public function up()
     {
-        Schema::table('health_and_safety', function (Blueprint $table) {
-            $table->boolean('status')->default(1)->after('category_id');
+        Schema::table('methods', function (Blueprint $table) {
+            $table->boolean('status')->default(1);
         });
+        
     }
 
     /**

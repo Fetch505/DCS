@@ -253,7 +253,7 @@ return [
     'Choose a worker'=> 'choose a worker',
     'Choose a project'=> 'Choose a project',
     'Choose a shift'=> 'Choose a shift',
-
+    'Quotations'=> 'Quotations',
     'Worker Name'=> 'Worker Name',
     'Project name'=> 'Project Name',
     'Task Name'=> 'Task Name',
