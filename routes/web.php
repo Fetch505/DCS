@@ -160,9 +160,9 @@ Route::group(['middleware' => 'auth'], function () {
 
         //Blog routes
         Route::resource('blogs','BlogController');
-        Route::get('/blogs/delete/{id}', 'blogController@delete')->name('blogs.delete'); 
-        Route::get('/blogs/edit/{id}', 'blogController@edit')->name('blogs.edit'); 
-        Route::post('/blogs/update/{id}', 'blogController@update')->name('blogs.update');
+        Route::get('/blogs/delete/{id}', 'BlogController@delete')->name('blogs.delete'); 
+        Route::get('/blogs/edit/{id}', 'BlogController@edit')->name('blogs.edit'); 
+        Route::post('/blogs/update/{id}', 'BlogController@update')->name('blogs.update');
 
         ////////////////users
         Route::get('/workersIndex','UserController@index')->name('supadmin.workersIndex');

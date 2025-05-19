@@ -47,17 +47,20 @@
                 <div class="row">
                   <div style="padding-left: 15px; width: 50%; float:left;">
                     <label for="name">@lang('common.Project name') </label>
-                    <span style="position: absolute; left: 150px;">: {{$inspectionReport->project->name}}</span>
+                    <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->project)->name }}</span>
+
                   </div>
                   <div style="width: 50%; float:right">
                     <label for="name">@lang('common.Inspector name') </label>
-                    <span style="position: absolute; left: 150px;">: {{$inspectionReport->inspector->name}}</span>
+                    <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->project)->name }}</span>
+
                   </div>
                 </div>
                 <div class="row">
                   <div style="padding-left: 15px; width: 50%; float:left;">
                     <label for="name">@lang('common.Address') </label>
-                    <span style="position: absolute; left: 150px;">: {{$inspectionReport->project->address}}</span>
+                    <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->project)->address }}</span>
+
                   </div>
                   <div style="width: 50%; float:right">
                     <label for="name">@lang('common.Inspection date') </label>

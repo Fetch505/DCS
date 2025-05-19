@@ -275,7 +275,7 @@ return [
     'Shift'=> 'Shift',
     'Select Shift'=> 'Select Shift',
     'Time Cushion' => 'Time Cushion',
-    'Time cushion in munutes' => 'Time cushion in munutes',
+    'Time cushion in munutes' => 'Time cushion in minutes',
     'Employee Code'=> 'Employee Code',
     'Designation'=> 'Designation',
     'Gender'=> 'Gender',

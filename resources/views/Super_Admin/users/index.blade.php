@@ -46,8 +46,21 @@
                 <tr>
                   <td>{{ ++$key }}</td>
                   <td>{{ $user->name }}</td>
-                  <td>{{ $user->companyName->name }}</td>
-                  <td>{{ $user->worker_type->name }}</td>
+                  <td>
+                    @if($user->companyName)
+                      {{ $user->companyName->name }}
+                    @else
+                      N/A
+                    @endif
+                  </td>
+
+                  <td>
+                    @if($user->worker_type)
+                      {{ $user->worker_type->name }}
+                    @else
+                      N/A
+                    @endif
+                  </td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->phone }}</td>
                   <td>{{ $user->status ? "Active":"In Active" }}</td>

@@ -37,15 +37,31 @@
             </thead>
             <tbody>
               @foreach ($inspectionReports as $key => $report)
-              <tr>
-                <td>{{ ++$key}}</td>
-                <td>{{ $report->project->customer->name }}</td>
-                <td>{{ $report->project->name }}</td>
-                <td>{{ date('M j, Y', strtotime($report->created_at)) }}</td>
-                <td style="text-align:center;">
-                  <a href="{{ route('inspection.view', $report->id) }}" data-toggle="tooltip" data-placement="top" title="@lang('Company_Admin/dashboard.Download') PDF"><i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i></a>
-                </td>
-              </tr>
+             <tr>
+    <td>{{ ++$key }}</td>
+
+    {{-- Check if project and customer exist --}}
+    <td>
+        {{ optional(optional($report->project)->customer)->name ?? 'No Customer' }}
+    </td>
+
+    {{-- Check if project exists --}}
+    <td>
+        {{ optional($report->project)->name ?? 'No Project' }}
+    </td>
+
+    {{-- Check if created_at exists --}}
+    <td>
+        {{ $report->created_at ? date('M j, Y', strtotime($report->created_at)) : 'No Date' }}
+    </td>
+
+    <td style="text-align:center;">
+        <a href="{{ route('inspection.view', $report->id) }}" data-toggle="tooltip" data-placement="top" title="@lang('Company_Admin/dashboard.Download') PDF">
+            <i class="fa fa-file-pdf-o" aria-hidden="true" style="color:red;"></i>
+        </a>
+    </td>
+</tr>
+
               @endforeach
             </tbody>
           </table>

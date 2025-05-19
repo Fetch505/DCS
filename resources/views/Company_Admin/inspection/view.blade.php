@@ -52,17 +52,17 @@ thead {
             <div class="row">
               <div class="col col-md-6">
                 <label for="name">@lang('common.Project name') </label>
-                <span style="position: absolute; left: 150px;">: {{$inspectionReport->project->name}}</span>
+                <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->project)->name }}</span>
               </div>
               <div class="col col-md-6">
                 <label for="name">@lang('common.Inspector name') </label>
-                <span style="position: absolute; left: 150px;">: {{$inspectionReport->inspector->name}}</span>
+              <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->inspector)->name }}</span>
               </div>
             </div>
             <div class="row">
               <div class="col col-md-6">
                 <label for="name">@lang('common.Address') </label>
-                <span style="position: absolute; left: 150px;">: {{$inspectionReport->project->address}}</span>
+               <span style="position: absolute; left: 150px;">: {{ optional($inspectionReport->project)->address }}</span>
               </div>
               <div class="col col-md-6">
                 <label for="name">@lang('common.Inspection date') </label>

@@ -145,7 +145,7 @@
             </li>
 
             <li>
-                <a href="{{route('quotations.index')}}"><i class="fa fa-file-text-o"></i> @lang('Company_Admin/dashboard.Quotation')s @lang('Company_Admin/dashboard.Management')</a>
+                <a href="{{route('quotations.index')}}"><i class="fa fa-file"></i> @lang('Company_Admin/dashboard.Quotation')s @lang('Company_Admin/dashboard.Management')</a>
             </li>
 
             <li>
