@@ -39,18 +39,18 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, $user)
-    {
-        if (($user->hasRole('superadmin') || $user->hasRole('admin') || $user->hasRole('customer')) && $user->is_active == 1) {
-            // User has the desired role, continue with the default authenticated behavior
-            $user->lastLoggedIn     = now();
-            $user->save();
-            return redirect()->intended($this->redirectPath());
-        } else {
-            // User does not have the desired role
-            Auth::logout();
-            return redirect()->back()->withErrors([
-                'email' => 'Unauthorized access.',
-            ]);
-        }
+{
+    if (($user->hasRole('superadmin') || $user->hasRole('admin') || $user->hasRole('customer')) && $user->is_active == 1) {
+        $user->lastLoggedIn = now();
+        $user->save();
+
+        // Redirect to external URL instead of /home
+        return redirect()->away('https://digital-clean-solution.vercel.app/');
+    } else {
+        Auth::logout();
+        return redirect()->back()->withErrors([
+            'email' => 'Unauthorized access.',
+        ]);
     }
+}
 }

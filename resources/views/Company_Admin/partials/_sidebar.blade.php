@@ -1,209 +1,247 @@
 <style>
-    /* Fixed sidenav, full height */
-    /*.sidenav {*/
-    /*    height: 100%;*/
-    /*    width: 200px;*/
-    /*    position: fixed;*/
-    /*    z-index: 1;*/
-    /*    top: 0;*/
-    /*    left: 0;*/
-    /*    background-color: #111;*/
-    /*    overflow-x: hidden;*/
-    /*    padding-top: 20px;*/
-    /*}*/
-
-    /* Style the sidenav links and the dropdown button */
+    /* Main Dropdown Button */
     .dropdown-btn {
         padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        /*font-size: 20px;*/
         color: #337AB7;
         display: block;
         border: none;
         background: none;
-        width:100%;
+        width: 100%;
         text-align: left;
         cursor: pointer;
         outline: none;
+        font-size: 14px;
+        transition: background-color 0.2s ease;
     }
-    .dropdown-container > ul > li > a{
+
+    /* Active Main Dropdown Button */
+    .dropdown-btn.active {
+        font-weight: bold;
+        background-color: #337AB7;
+        color: #ffffff;
+
+    }
+
+    /* Dropdown Container */
+    .dropdown-container {
+        display: none;
+        padding-left: 8px;
+
+    }
+
+    .dropdown-container.show {
+        display: block !important;
+    }
+
+    /* Dropdown List */
+    .dropdown-container ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Submenu Items */
+    .dropdown-container ul li a {
+        display: block;
+        padding: 4px 16px;
+        margin-block: 6px;
+        color: #337AB7;
+        text-decoration: none;
+        font-size: 13px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+    }
+
+    /* Hover on submenu links */
+    .dropdown-container ul li a:hover {
+        background-color: #d9e6f2;
+        color: #23527c;
         text-decoration: none;
     }
 
-    /* On mouse-over */
-    /*.sidenav a:hover, .dropdown-btn:hover {*/
-    /*    color: #f1f1f1;*/
-    /*}*/
-
-    /* Main content */
-    .main {
-        margin-left: 200px; /* Same as the width of the sidenav */
-        font-size: 20px; /* Increased text to enable scrolling */
-        padding: 0px 10px;
+    /* Active submenu link */
+    .dropdown-container ul li a.active {
+        background-color: #5b9bd5;
+        /* Light blue */
+        color: #ffffff !important;
+        font-weight: bold;
+        border-radius: 4px 0 0 4px;
+        /* Rounded on left side only */
     }
 
-    /* Add an active class to the active dropdown button */
-    /*.active {*/
-    /*    background-color: green;*/
-    /*    color: white;*/
-    /*}*/
-
-    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-    .dropdown-container {
-        display: none;
-        background-color: ;
-        padding-left: 8px;
-    }
-
-    /* Optional: Style the caret down icon */
+    /* Dropdown arrow icon */
     .fa-caret-down {
         float: right;
         padding-right: 8px;
     }
+
+    /* Top-level nav active state */
+    .nav>li>a.active {
+       
+        /* Light blue */
+        color: #ffffff !important;
+        background-color: #337AB7 !important;
+        font-weight: bold;
+    }
+
+
+
 </style>
+
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            {{-- <li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="@lang('Company_Admin/dashboard.Search')...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-                </div>
-                <!-- /input-group -->
-            </li> --}}
+
+            <!-- System Management -->
             <li>
-                <a href="{{route('home')}}"><i class="fa fa-dashboard fa-fw"></i> @lang('Company_Admin/dashboard.Dashboard')</a>
+                <a href="{{ route('home') }}" class="mainlinks {{ request()->routeIs('home') ? 'active' : '' }}">
+                    <i class="fa fa-dashboard fa-fw"></i> @lang('Company_Admin/dashboard.Dashboard')
+                </a>
             </li>
-
             <li>
-                <a href="{{route('com_admin.profile')}}"><i class="fa fa-user"></i> @lang('Company_Admin/dashboard.Profile')</a>
+                <a href="{{ route('com_admin.profile') }}"
+                    class="{{ request()->routeIs('com_admin.profile') ? 'active' : '' }}">
+                    <i class="fa fa-user"></i> @lang('Company_Admin/dashboard.Profile')
+                </a>
             </li>
-
+            <!-- Safety Guidelines -->
             <li>
-                <a href="{{route('methodsindex')}}"><i class="glyphicon glyphicon-tasks"></i> @lang('common.Methods Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('healthAndSafety')}}"><i class="fa fa-heart"></i> @lang('common.Health And Safety Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('floor.index')}}"><i class="fa fa-building"></i> @lang('common.Floors Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('area.index')}}"><i class="glyphicon glyphicon-globe"></i>   @lang('common.Areas Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('element.index')}}"><i class="fa fa-wrench"></i>   @lang('common.Elements Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('task.index')}}"><i class="glyphicon glyphicon-tasks"></i>   @lang('common.Tasks Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('customer.index')}}"><i class="fa fa-users"></i> @lang('common.Customers Management')  </a>
-            </li>
-
-            <li>
-                <a href="{{route('employ_agency.index')}}"><i class="glyphicon glyphicon-briefcase"></i> @lang('common.Employment Agencies Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('staffType.index')}}"><i class="fa fa-database" aria-hidden="true"></i> @lang('common.Staff Roles Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('project.index')}}"><i class="fa fa-industry"></i> @lang('common.Projects Management')</a>
-            </li>
-
-
-            <li>
-                <a href="{{route('projectcostestimate.index')}}"><i class="fa fa-cc" aria-hidden="true"></i> @lang('common.Projects Cost Estimate')</a>
-            </li>
-
-            <li>
-                <a href="{{route('materialCategory.index')}}"><i class="fa fa-shopping-basket"></i> @lang('Company_Admin/dashboard.Material') @lang('common.Category')</a>
-            </li>
-
-            <li>
-                <a href="{{route('materialType.index')}}"><i class="fa fa-shopping-basket"></i> @lang('Company_Admin/dashboard.Material') @lang('Company_Admin/dashboard.Types')</a>
-            </li>
-
-            <li>
-                <a href="{{route('material.index')}}"><i class="fa fa-shopping-basket"></i> @lang('common.Materials')</a>
-            </li>
-
-            <li>
-                <a href="{{route('supplier.index')}}"><i class="fa fa-truck"></i> @lang('common.Suppliers')</a>
-            </li>
-
-            <li>
-                <a href="{{route('quotations.index')}}"><i class="fa fa-file"></i> @lang('Company_Admin/dashboard.Quotation')s @lang('Company_Admin/dashboard.Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('shift.index')}}"><i class="fa fa-university"></i> @lang('common.Shift Management')</a>
-            </li>
-
-            <li>
-                <a href="{{route('staff.index')}}"><i class="fa fa-user"></i> @lang('common.Staff Management')</a>
-            </li>
-
-            <li>
-                <div class="dropdown-btn">   <i class="fa fa-file"></i>   @lang('common.Reports Management')
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="dropdown-container">
+                <button
+                    class="dropdown-btn {{ request()->is('viewMethods') || request()->is('healthAndSafety') ? 'active' : '' }}">
+                    <i class="fa fa-heart"></i> Safety Guidelines <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('viewMethods') || request()->is('healthAndSafety') ? 'show' : '' }}">
                     <ul>
-                        <li> <a href="{{ route('inspection.index') }}">@lang('common.Antal inspec')</a></li>
-                        <li> <a href="{{route('workerReport.index')}}">@lang('common.Worker report') </a></li>
-                        <li> <a href="{{route('worker-over-time-report.index')}}">@lang('common.Worker overtime') </a></li>
-                        <li> <a href="{{route('erp-report.index')}}">@lang('common.ERP Report') </a></li>
-                        <li> <a href="{{route('expiry-report.index')}}">@lang('common.Expiry Report') </a></li>
+                        <li><a href="{{ route('methodsindex') }}">@lang('common.Methods Management')</a></li>
+                        <li><a href="{{ route('healthAndSafety') }}">@lang('common.Health And Safety Management')</a></li>
                     </ul>
                 </div>
             </li>
-        <!-- <li>
-                <a href="{{route('material.index')}}"><i class="fa fa-shopping-basket"></i> @lang('common.Materials')</a>
-            </li> -->
 
-        <!-- <li>
-                <a href="{{route('supplier.index')}}"><i class="fa fa-truck"></i> @lang('common.Suppliers')</a>
-            </li> -->
+            <!-- Company Setup -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('floor*') || request()->is('area*') || request()->is('element*') ? 'active' : '' }}">
+                    <i class="fa fa-cogs"></i> Company Setup <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('floor*') || request()->is('area*') || request()->is('element*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('floor.index') }}">@lang('common.Floors Management')</a></li>
+                        <li><a href="{{ route('area.index') }}">@lang('common.Areas Management')</a></li>
+                        <li><a href="{{ route('element.index') }}">@lang('common.Elements Management')</a></li>
+                    </ul>
+                </div>
+            </li>
 
-        <!-- <li>
-                <a href="#"><i class="fa fa-graduation-cap"></i> @lang('common.Accounts')</a>
-            </li> -->
+            <!-- Human Resources -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('staff') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'active' : '' }}">
+                    <i class="fa fa-users"></i> Human Resources <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('staff') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('staff.index') }}">@lang('common.Staff Management')</a></li>
+                        <li><a href="{{ route('staffType.index') }}">@lang('common.Staff Roles Management')</a></li>
+                        <li><a href="{{ route('employ_agency.index') }}">@lang('common.Employment Agencies Management')</a></li>
+                        <li><a href="{{ route('shift.index') }}">@lang('common.Shift Management')</a></li>
+                    </ul>
+                </div>
+            </li>
 
-        <!-- <li>
-                <a href="#"><i class="fa fa-credit-card"></i> @lang('Company_Admin/dashboard.Salaries') @lang('Company_Admin/dashboard.Management')</a>
-            </li> -->
+            <!-- Project Management -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('project*') || request()->is('task*') || request()->is('projectcostestimate*') ? 'active' : '' }}">
+                    <i class="fa fa-industry"></i> @lang('common.Projects') <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('project*') || request()->is('task*') || request()->is('projectcostestimate*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('project.index') }}">@lang('common.Projects Management')</a></li>
+                        <li><a href="{{ route('task.index') }}">@lang('common.Tasks Management')</a></li>
+                        <li><a href="{{ route('projectcostestimate.index') }}">@lang('common.Projects Cost Estimate')</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Materials & Procurement -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('materialCategory*') || request()->is('materialType*') || request()->is('material*') || request()->is('supplier*') ? 'active' : '' }}">
+                    <i class="fa fa-shopping-basket"></i> Materials & Procurement <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('materialCategory*') || request()->is('materialType*') || request()->is('material*') || request()->is('supplier*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('materialCategory.index') }}">@lang('Company_Admin/dashboard.Material') @lang('common.Category')</a>
+                        </li>
+                        <li><a href="{{ route('materialType.index') }}">@lang('Company_Admin/dashboard.Material') @lang('Company_Admin/dashboard.Types')</a></li>
+                        <li><a href="{{ route('material.index') }}">@lang('common.Materials')</a></li>
+                        <li><a href="{{ route('supplier.index') }}">@lang('common.Suppliers')</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Customers -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('customer*') || request()->is('quotations*') ? 'active' : '' }}">
+                    <i class="fa fa-user"></i> Customers <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('customer*') || request()->is('quotations*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('customer.index') }}">@lang('common.Customers Management')</a></li>
+                        <li><a href="{{ route('quotations.index') }}">@lang('Company_Admin/dashboard.Quotation')s @lang('Company_Admin/dashboard.Management')</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <!-- Reports -->
+            <li>
+                <button
+                    class="dropdown-btn {{ request()->is('inspection*') || request()->is('workerReport*') || request()->is('worker-over-time-report*') || request()->is('erp-report*') || request()->is('expiry-report*') ? 'active' : '' }}">
+                    <i class="fa fa-file"></i> @lang('common.Reports Management') <i class="fa fa-caret-down"></i>
+                </button>
+                <div
+                    class="dropdown-container {{ request()->is('inspection*') || request()->is('workerReport*') || request()->is('worker-over-time-report*') || request()->is('erp-report*') || request()->is('expiry-report*') ? 'show' : '' }}">
+                    <ul>
+                        <li><a href="{{ route('inspection.index') }}">@lang('common.Antal inspec')</a></li>
+                        <li><a href="{{ route('workerReport.index') }}">@lang('common.Worker report')</a></li>
+                        <li><a href="{{ route('worker-over-time-report.index') }}">@lang('common.Worker overtime')</a></li>
+                        <li><a href="{{ route('erp-report.index') }}">@lang('common.ERP Report')</a></li>
+                        <li><a href="{{ route('expiry-report.index') }}">@lang('common.Expiry Report')</a></li>
+                    </ul>
+                </div>
+            </li>
 
         </ul>
     </div>
-    <!-- /.sidebar-collapse -->
 </div>
-<!-- /.navbar-static-side -->
-<script>
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
 
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
+
+<script>
+    const dropdowns = document.querySelectorAll(".dropdown-btn");
+
+    dropdowns.forEach((btn) => {
+        btn.addEventListener("click", function() {
+            const wasActive = this.classList.contains("active");
+
+            // Close all dropdowns
+            dropdowns.forEach((btn) => {
+                btn.classList.remove("active");
+                btn.nextElementSibling.classList.remove("show");
+            });
+
+            // Toggle current
+            if (!wasActive) {
+                this.classList.add("active");
+                this.nextElementSibling.classList.add("show");
             }
         });
-    }
+    });
 </script>

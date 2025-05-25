@@ -252,7 +252,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">@lang('Super_Admin/dashboard.Profiles')</a>
+                <a href="#" class="btn btn-default btn-flat">@lang('Super_Admin/dashboard.Profiles') asdasd</a>
               </div>
               <div class="pull-right">
                 <a class="btn btn-default" href="{{ route('logout') }}"

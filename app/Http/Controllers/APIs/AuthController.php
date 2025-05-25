@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\APIs;
+
 use Auth;
 use JWTAuth;
 use App\Models\User;
-use App\Models\Project;
 use App\Models\Day;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -13,148 +13,147 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PrivateUserResource;
 
-
 class AuthController extends Controller
 {
-
     public function __construct()
     {
-        // $this->middleware('auth:api', ['except' => ['login']]);
-        $this->middleware('JWT', ['except' => ['login','signup']]);
+        // Apply JWT middleware except for public actions
+        $this->middleware('JWT', ['except' => ['login', 'register', 'refresh', 'me', 'updatepassword']]);
     }
 
     public function login(Request $request)
     {
-        $device_unique_id = $request->device_unique_id;
-        $fcm_token        = $request->fcm_token;
-        $device_type      = $request->device_type;
+        $credentials = $request->only('email', 'password');
 
-        $user = User::where('email','=',$request->email)->first();
-        if (! isset($user->id)) {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
             return response()->json([
                 'status' => false,
                 'message' => "Not registered user",
-            ]);
+            ], 404);
         }
-        else if($user->role->name == 'admin' || $user->role->name == 'superadmin'){
+
+        if (in_array($user->role->name, ['admin', 'superadmin'])) {
             return response()->json([
                 'status' => false,
-                'message' => "This user not allowed to login",
-            ]);
-        }else {
-        $user->device_unique_id = $device_unique_id;
-        $user->fcm_token        = $fcm_token;
-        $user->device_type      = $device_type;
-        $user->loggedIn         = true;
-        $user->lastLoggedIn     = now();
-        $user->save();
+                'message' => "This user is not allowed to login",
+            ], 403);
+        }
 
-        $credentials = request(['email', 'password']);
-
-        if (! $token = JWTAuth::attempt($credentials)) {
+        if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        $my_id = Auth::user()->id;
-        $unreadMSG_Count = Notification::where('reciever_id','=',$my_id)
-                        ->where('status','=',0)->count();
+        // Update device info and login status
+        $user->device_unique_id = $request->device_unique_id;
+        $user->fcm_token = $request->fcm_token;
+        $user->device_type = $request->device_type;
+        $user->loggedIn = true;
+        $user->lastLoggedIn = now();
+        $user->save();
 
-        return (new PrivateUserResource($request->user()))
-        ->additional([
-          'meta' => [
-              'unreadNotificationCount' => $unreadMSG_Count,
-            // 'expiresIn' => auth()->factory()->getTTL() * 60,
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'token' => $token
-          ]
+        $unreadNotificationCount = Notification::where('reciever_id', $user->id)->where('status', 0)->count();
+
+        return (new PrivateUserResource($user))->additional([
+            'meta' => [
+                'unreadNotificationCount' => $unreadNotificationCount,
+                'expires_in' => JWTAuth::factory()->getTTL() * 60,
+                'token' => $token,
+            ]
         ]);
-      }//else
     }
 
     public function register(Request $request)
     {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->company_id = 398; // demo company
+        $user->role_id = 3; // worker role id
+        $user->slug = Str::slug($request->name) . '-' . time();
+        $user->password = Hash::make($request->password);
+        $user->worker_type_id = 1;
+        $user->reports_to_id = 400;
+        $user->allow_leaves = false;
+        $user->device_unique_id = $request->device_unique_id;
+        $user->country = 'Netherlands';
+        $user->device_type = $request->device_type;
+        $user->save();
 
-      $device_unique_id = $request->device_unique_id;
-      $device_type      = $request->device_type;
+        // Assign demo tasks
+        foreach ([429, 434] as $taskId) {
+            $task = Day::find($taskId);
+            if ($task) {
+                $task->user_id = $user->id;
+                $task->save();
+            }
+        }
 
-      //create new worker for the demo company
-      $user = new User;
-      $user->name = $request->name;
-      $user->email = $request->email;
-      $user->company_id = 398;
-      $user->role_id = 3;
-      $user->slug = Str::slug($request->name) . '-' . time();
-      $user->password =  Hash::make($request->password);
-      $user->worker_type_id = 1;
-      $user->reports_to_id = 400;
-      $user->allow_leaves = false;
-      $user->device_unique_id = $device_unique_id;
-      $user->country        =  'Netherlands';
-      $user->device_type      = $device_type;
-      $user->save();
+        $message = ($request->header('Accept-Language') == 'en') ? 'Company created successfully' : 'Bedrijf succesvol opgericht';
 
-      //assign the user to the demo weekly task
-      $day = Day::find(429);
-      $day->user_id = $user->id;
-      $day->save();
-
-      //assign the user to the demo daily task
-      $day = Day::find(434);
-      $day->user_id = $user->id;
-      $day->save();
-
-
-      $message = ($request->header == 'en')? 'company created successfully' : 'bedrijf succesvol opgericht';
-
-      return response()->json([
-        'status' => true,
-        'message' => $message,
-      ]);
-
+        return response()->json([
+            'status' => true,
+            'message' => $message,
+        ]);
     }
+
     public function updatepassword(Request $request)
     {
-      $id = Auth::user()->id;
-      $user_id = $request->id;
-      $password = $request->password;
-      $user = User::find($user_id);
-      $user->password =  Hash::make($password);
-      $user->last_update_by = $id;
+        $userId = $request->id;
+        $password = $request->password;
 
-      $user->save();
-      $message = ($request->header == 'en')? 'Password Updated Successfully' : 'Wachtwoord succesvol bijgewerkt';
+        $user = User::find($userId);
 
-      return response()->json([
-        'status' => true,
-        'message' => $message,
-      ]);
+        if (!$user) {
+            return response()->json(['status' => false, 'message' => 'User not found'], 404);
+        }
 
+        $user->password = Hash::make($password);
+        $user->last_update_by = Auth::id();
+        $user->save();
+
+        $message = ($request->header('Accept-Language') == 'en') ? 'Password Updated Successfully' : 'Wachtwoord succesvol bijgewerkt';
+
+        return response()->json([
+            'status' => true,
+            'message' => $message,
+        ]);
     }
 
     public function me(Request $request)
     {
-        // return response()->json(auth()->user());
-        return (new PrivateUserResource($request->user()));
+        return new PrivateUserResource($request->user());
     }
 
     public function logout()
     {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        $user->device_unique_id = '';
-        $user->fcm_token        = '';
-        $user->device_type      = '';
-        $user->loggedIn         = false;
-        $user->save();
+        try {
+            $user = Auth::user();
+            if ($user) {
+                $user->device_unique_id = '';
+                $user->fcm_token = '';
+                $user->device_type = '';
+                $user->loggedIn = false;
+                $user->save();
+            }
 
-        auth()->logout();
+            JWTAuth::invalidate(JWTAuth::getToken());
 
-        return response()->json(['message' => 'Successfully logged out']);
+            return response()->json(['message' => 'Successfully logged out']);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Failed to logout, token invalid'], 401);
+        }
     }
 
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        try {
+            $token = JWTAuth::refresh();
+            return $this->respondWithToken($token);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error' => 'Token refresh failed'], 401);
+        }
     }
 
     protected function respondWithToken($token)
@@ -162,9 +161,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            // 'expires_in' => auth()->factory()->getTTL() * 60
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
         ]);
     }
-
 }

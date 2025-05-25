@@ -3,6 +3,7 @@
 return [
 
     'Areas Management'               => 'Areas Management',
+    'Actions'                      => 'Actions',
     'Add new'                        => 'Add New',
     'Add new company'                => 'Add New Company',
     'Add new area'                   => 'Add New Area',
@@ -24,6 +25,7 @@ return [
     'Add new workable day'           => 'Add New Workable Day',
     'Add new method'                 => 'Add New Method',
     'Add new shift'                  => 'Add New Shift',
+    'Access Control' => 'Access Control',
     'Create new blog'                => 'Create New Blog',
     'Address'                        => 'Address',
     'Associated agency'              => 'Associated Agency',
@@ -31,6 +33,8 @@ return [
     'Antal inspec'                   => 'Inspections',
     'Area'                           => 'Area',
     'Companies Management'           => 'Companies Management',
+    'Company Management'           => 'Company Management',
+    
     'Customers Management'           => 'Customers Management',
     'Customer details'               => 'Customer Details',
     'Customer name'                  => 'Customer Name',
@@ -102,6 +106,7 @@ return [
     'List of method categories'      => 'List Of Method Categories',
     'List of health categories'      => 'List Of Health Categories',
     'Location'                       => 'Location',
+    'Methods & Health' => 'Methods & Health',
     'No report'                      => 'No Report',
     'Payments Management'            => 'Payments Management',
     'Permissions Management'         => 'Permissions Management',
@@ -137,6 +142,7 @@ return [
     'URL'                            => 'URL',
     'Worker'                         => 'Worker',
     'Workers'                        => 'Workers',
+    'Workers & Rates' => 'Workers & Rates',
     'Workers Hourly Rate Management' => 'Workers Hourly Management',
     'Worker type'                    => 'Worker Type',
     'Workers Management'             => 'Workers Management',

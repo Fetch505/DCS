@@ -57,10 +57,9 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-      // return $request->all();
-      $request->validate([
+   public function store(Request $request)
+{
+    $request->validate([
         'name' => 'required|max:255',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:6',
@@ -71,46 +70,51 @@ class CompanyController extends Controller
         'postcode' => 'required|max:255',
         'houseNumber' => 'required|max:255',
         'country' => 'required|max:255',
-        ]);
+    ]);
 
-      $company = new Company;
-      $company->name = $request->name;
-      $company->save();
+    $company = new Company;
+    $company->name = $request->name;
+    $company->save();
 
-      $role_id              = Role::where('name','=','admin')->pluck('id')->first();
-      $user                 = new User;
-      $user->role_id        = $role_id;
-      $user->email          = $request->email;
-      $user->name           = $request->name;
-      $user->password       = Hash::make($request->password);
-      $user->slug           = Str::slug($request->name) . '-' . time();
-      $user->phone          = $request->phone;
-      $user->company_id     = $company->id;
-      $user->worker_type_id = 0;
-      $user->address        = $request->address;
-      $user->city           = $request->city;
-      $user->contact_person1 = $request->contact_person;
-      $user->zipcode        = $request->zipcode;
-      $user->postcode       = $request->postcode;
-      $user->houseNumber    = $request->houseNumber;
-      $user->country        = $request->country;
-      $user->fax            = $request->fax;
-      $user->allow_leaves   = (isset($request->allow_leaves))? 1:0;
-      $user->is_active      = (isset($request->is_active))? 1:0;
-      $user->notes          = null;
-      $user->email_verified_at = null;
-      $user->created_at     = carbon::now();
-      $user->updated_at     = carbon::now();
-      $user->save();
+    $role_id              = Role::where('name','=','admin')->pluck('id')->first();
+    $user                 = new User;
+    $user->role_id        = $role_id;
+    $user->email          = $request->email;
+    $user->name           = $request->name;
+    $user->password       = Hash::make($request->password);
+    $user->slug           = Str::slug($request->name) . '-' . time();
+    $user->phone          = $request->phone;
+    $user->company_id     = $company->id;
+    $user->worker_type_id = 0;
+    $user->address        = $request->address;
+    $user->city           = $request->city;
+    $user->contact_person1 = $request->contact_person;
+    $user->zipcode        = $request->zipcode;
+    $user->postcode       = $request->postcode;
+    $user->houseNumber    = $request->houseNumber;
+    $user->country        = $request->country;
+    $user->fax            = $request->fax ?? null;
+    $user->allow_leaves   = $request->has('allow_leaves') ? 1 : 0;
+    $user->is_active      = $request->has('is_active') ? 1 : 0;
+    $user->notes          = null;
+    $user->email_verified_at = null;
+    $user->created_at     = now();
+    $user->updated_at     = now();
+    $user->save();
 
-      //send welcome email to the company_id
-      Mail::to($request->email)->send(new WelcomeMail($request->name));
-
-      return response()->json([
-          'status' => true,
-          'errors' => false,
-      ],200);
+    // Try sending email, but ignore failure
+    try {
+        Mail::to($request->email)->send(new WelcomeMail($request->name));
+    } catch (\Exception $e) {
+        // Log the error if needed: Log::error($e->getMessage());
+        // Do not fail response
     }
+
+    return response()->json([
+        'status' => true,
+        'errors' => false,
+    ], 200);
+}
 
     /**
      * Display the specified resource.
