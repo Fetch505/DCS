@@ -28,6 +28,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected function loggedOut(\Illuminate\Http\Request $request)
+{
+    return redirect()->away('https://digital-clean-solution.vercel.app/'); // Replace with your external URL
+}
+
     /**
      * Create a new controller instance.
      *
