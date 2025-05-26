@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   @include('Super_Admin.partials.header')
+  <style>
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #e6f0ff;
+}
 
+.table-hover > tbody > tr:hover {
+  background-color: #cce0ff;
+}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
 

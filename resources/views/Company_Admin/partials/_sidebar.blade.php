@@ -98,17 +98,12 @@
                     <i class="fa fa-dashboard fa-fw"></i> @lang('Company_Admin/dashboard.Dashboard')
                 </a>
             </li>
-            <li>
-                <a href="{{ route('com_admin.profile') }}"
-                    class="{{ request()->routeIs('com_admin.profile') ? 'active' : '' }}">
-                    <i class="fa fa-user"></i> @lang('Company_Admin/dashboard.Profile')
-                </a>
-            </li>
+           
             <!-- Safety Guidelines -->
             <li>
                 <button
                     class="dropdown-btn {{ request()->is('viewMethods') || request()->is('healthAndSafety') ? 'active' : '' }}">
-                    <i class="fa fa-heart"></i> Safety Guidelines <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-heart"></i> Method & Safety Guideline <i class="fa fa-caret-down"></i>
                 </button>
                 <div
                     class="dropdown-container {{ request()->is('viewMethods') || request()->is('healthAndSafety') ? 'show' : '' }}">
@@ -131,6 +126,7 @@
                         <li><a href="{{ route('floor.index') }}">@lang('common.Floors Management')</a></li>
                         <li><a href="{{ route('area.index') }}">@lang('common.Areas Management')</a></li>
                         <li><a href="{{ route('element.index') }}">@lang('common.Elements Management')</a></li>
+                         <li><a href="{{ route('task.index') }}">@lang('common.Tasks Management')</a></li>
                     </ul>
                 </div>
             </li>
@@ -162,7 +158,7 @@
                     class="dropdown-container {{ request()->is('project*') || request()->is('task*') || request()->is('projectcostestimate*') ? 'show' : '' }}">
                     <ul>
                         <li><a href="{{ route('project.index') }}">@lang('common.Projects Management')</a></li>
-                        <li><a href="{{ route('task.index') }}">@lang('common.Tasks Management')</a></li>
+                       
                         <li><a href="{{ route('projectcostestimate.index') }}">@lang('common.Projects Cost Estimate')</a></li>
                     </ul>
                 </div>

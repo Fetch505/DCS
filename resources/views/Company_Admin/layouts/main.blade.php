@@ -7,6 +7,13 @@
     .dataTables_filter {
          float:right;
       }
+      .table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #e6f0ff;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #cce0ff;
+}
     </style>
     @yield('outer_css')
   </head>

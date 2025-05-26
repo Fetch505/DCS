@@ -6,7 +6,17 @@
     $('[data-toggle="tooltip"]').tooltip()
   })
 </script>
+<style>
+  /* Custom striped row color (light blue) */
+  #table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e6f0ff; /* Light blue */
+  }
 
+  /* Optional: Hover effect (darker blue) */
+  #table.table-hover tbody tr:hover {
+    background-color: #cce0ff;
+  }
+</style>
 @section('content')
   <section class="content">
     <div class="row">

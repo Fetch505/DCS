@@ -8,7 +8,17 @@
         <h1>@lang('common.Employment Agencies Management')</h1>
       </div>
     </div>
+<style>
+  /* Custom striped row color (light blue) */
+  #table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e6f0ff; /* Light blue */
+  }
 
+  /* Optional: Hover effect (darker blue) */
+  #table.table-hover tbody tr:hover {
+    background-color: #cce0ff;
+  }
+</style>
     <div class="row">
         <div class="col-lg-12">
           <a class="btn btn-primary btn-md pull-right" href="{{route('employ_agency.index')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>@lang('Company_Admin/dashboard.Back')</a>

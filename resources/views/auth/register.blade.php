@@ -1,165 +1,394 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>DCS | @lang('outsideLogin.Registration Page')</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{asset('plugins/iCheck/square/blue.css')}}">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google tag (gtag.js) --> 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16558461896"></script> 
-<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16558461896'); </script>
-
-  <style media="screen">
-
-    html,body{
-      overflow-x:hidden;
-      }
-
-    .top-right {
-        position: absolute;
-        right: 25px;
-        top: 18px;
-    }
-
-  </style>
-
-  <script>
-    var APP_URL = {!! json_encode(url('/').'/') !!}
-  </script>
-
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'DCS') }} - @lang('outsideLogin.Registration Page')</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js for interactivity -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Google tag (gtag.js) --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16558461896"></script> 
+    <script> 
+        window.dataLayer = window.dataLayer || []; 
+        function gtag(){dataLayer.push(arguments);} 
+        gtag('js', new Date()); 
+        gtag('config', 'AW-16558461896'); 
+    </script>
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #b0eaaf 0%, #347ab6 100%);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+        }
+        
+        .input-focus {
+            transition: all 0.3s ease;
+        }
+        
+        .input-focus:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-weak { background: #ef4444; width: 25%; }
+        .strength-fair { background: #f59e0b; width: 50%; }
+        .strength-good { background: #10b981; width: 75%; }
+        .strength-strong { background: #059669; width: 100%; }
+    </style>
+    
+    <script>
+        var APP_URL = {!! json_encode(url('/').'/') !!}
+        
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 </head>
-<body class="hold-transition register-page">
-  <div class="flex-center position-ref full-height">
-    <div class="top-right links">
-      <select class="form-control" name="languageSelected" id="languageSwitcher" onchange="languageChoosed()">
-        <option value="en" {{ Session::get('locale') == 'en' ? 'selected' : '' }}>English</option>
-        <option value="nl" {{ Session::get('locale') == 'nl' ? 'selected' : '' }}>Dutch</option>
-      </select>
-    </div>
-  </div>
-<div class="register-box">
-  <div class="register-logo">
-    <a href="{{ url('/register') }}">@lang('outsideLogin.acs')</a>
-  </div>
 
-  <div class="register-box-body">
-    <p class="login-box-msg">@lang('outsideLogin.Register a new membership')</p>
-
-    <form method="POST" action="{{ route('signup') }}">
-        @csrf
-
-        <div class="form-group row">
-            <label for="name" class="col-md-4 col-form-label text-md-right">@lang('outsideLogin.Name')</label>
-
-            <div class="col-md-6">
-                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                @if ($errors->has('name'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
+<body class="min-h-screen gradient-bg font-sans antialiased">
+    <!-- Language Switcher -->
+    <div class="absolute top-6 right-6 z-10" x-data="{ open: false }">
+        <div class="relative">
+            <button @click="open = !open" 
+                    class="flex items-center space-x-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-all duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                </svg>
+                <span class="text-sm font-medium">
+                    {{ Session::get('locale') == 'en' ? 'English' : 'Dutch' }}
+                </span>
+                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+            
+            <div x-show="open" 
+                 x-cloak
+                 @click.away="open = false"
+                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 scale-95"
+                 x-transition:enter-end="opacity-100 scale-100"
+                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave-start="opacity-100 scale-100"
+                 x-transition:leave-end="opacity-0 scale-95"
+                 class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-20">
+                <select class="w-full px-4 py-2 text-gray-700 bg-transparent border-none outline-none cursor-pointer" 
+                        name="languageSelected" 
+                        id="languageSwitcher" 
+                        onchange="languageChoosed()">
+                    <option value="en" {{ Session::get('locale') == 'en' ? 'selected' : '' }}>🇺🇸 English</option>
+                    <option value="nl" {{ Session::get('locale') == 'nl' ? 'selected' : '' }}>🇳🇱 Dutch</option>
+                </select>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="email" class="col-md-4 col-form-label text-md-right">@lang('outsideLogin.E-Mail Address')</label>
-
-            <div class="col-md-6">
-                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="password" class="col-md-4 col-form-label text-md-right">@lang('outsideLogin.Password')</label>
-
-            <div class="col-md-6">
-                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                @endif
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">@lang('outsideLogin.Confirm Password')</label>
-
-            <div class="col-md-6">
-                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-            </div>
-        </div>
-
-        <div class="form-group row">
-        <label for="language" class="col-md-4 col-form-label text-md-right">@lang('outsideLogin.Language')</label>
-
-        <div class="col-md-6">
-            <select id="language" class="form-control" name="language" required>
-                <option value="en">English</option>
-                <option value="nl">Dutch</option>
-            </select>
         </div>
     </div>
 
-        <div class="form-group row mb-0">
-            <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary">
-                    @lang('outsideLogin.Register')
-                </button>
+    <!-- Main Content -->
+    <div class="min-h-screen flex items-center justify-center px-4 py-12">
+        <div class="w-full max-w-lg">
+            <!-- Logo/Brand -->
+            <div class="text-center mb-8 fade-in">
+                <a href="{{ url('/register') }}" class="inline-block">
+                    <h1 class="text-4xl font-bold text-white mb-2">@lang('outsideLogin.acs')</h1>
+                    <div class="w-16 h-1 bg-white/60 mx-auto rounded-full"></div>
+                </a>
+            </div>
+
+            <!-- Registration Card -->
+            <div class="glass-effect rounded-2xl shadow-2xl p-8 fade-in" style="animation-delay: 0.2s;">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Create Your Account</h2>
+                    <p class="text-gray-600">@lang('outsideLogin.Register a new membership')</p>
+                </div>
+
+                <!-- Registration Form -->
+                <form method="POST" action="{{ route('signup') }}" class="space-y-6" 
+                      x-data="{ 
+                          showPassword: false, 
+                          showConfirmPassword: false,
+                          password: '',
+                          confirmPassword: '',
+                          passwordStrength: 0,
+                          passwordMatch: true,
+                          checkPasswordStrength() {
+                              let strength = 0;
+                              if (this.password.length >= 8) strength++;
+                              if (/[a-z]/.test(this.password)) strength++;
+                              if (/[A-Z]/.test(this.password)) strength++;
+                              if (/[0-9]/.test(this.password)) strength++;
+                              if (/[^A-Za-z0-9]/.test(this.password)) strength++;
+                              this.passwordStrength = strength;
+                          },
+                          checkPasswordMatch() {
+                              this.passwordMatch = this.password === this.confirmPassword || this.confirmPassword === '';
+                          }
+                      }">
+                    @csrf
+
+                    <!-- Name Field -->
+                    <div class="space-y-2">
+                        <label for="name" class="block text-sm font-medium text-gray-700">
+                            @lang('outsideLogin.Name')
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <input id="name" 
+                                   type="text" 
+                                   name="name" 
+                                   value="{{ old('name') }}" 
+                                   required 
+                                   autofocus
+                                   class="input-focus block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent {{ $errors->has('name') ? 'border-red-500' : '' }}"
+                                   placeholder="Enter your full name">
+                        </div>
+                        @if ($errors->has('name'))
+                            <p class="text-red-500 text-sm mt-1">{{ $errors->first('name') }}</p>
+                        @endif
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="space-y-2">
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            @lang('outsideLogin.E-Mail Address')
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                                </svg>
+                            </div>
+                            <input id="email" 
+                                   type="email" 
+                                   name="email" 
+                                   value="{{ old('email') }}" 
+                                   required
+                                   class="input-focus block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent {{ $errors->has('email') ? 'border-red-500' : '' }}"
+                                   placeholder="Enter your email address">
+                        </div>
+                        @if ($errors->has('email'))
+                            <p class="text-red-500 text-sm mt-1">{{ $errors->first('email') }}</p>
+                        @endif
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="space-y-2">
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            @lang('outsideLogin.Password')
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <input id="password" 
+                                   :type="showPassword ? 'text' : 'password'" 
+                                   name="password" 
+                                   x-model="password"
+                                   @input="checkPasswordStrength(); checkPasswordMatch()"
+                                   required
+                                   class="input-focus block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent {{ $errors->has('password') ? 'border-red-500' : '' }}"
+                                   placeholder="Create a strong password">
+                            <button type="button" 
+                                    @click="showPassword = !showPassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg x-show="!showPassword" class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <svg x-show="showPassword" x-cloak class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Password Strength Indicator -->
+                        <div x-show="password.length > 0" x-cloak class="mt-2">
+                            <div class="flex justify-between text-xs text-gray-600 mb-1">
+                                <span>Password Strength</span>
+                                <span x-text="passwordStrength < 2 ? 'Weak' : passwordStrength < 4 ? 'Fair' : passwordStrength < 5 ? 'Good' : 'Strong'"></span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="password-strength rounded-full h-2" 
+                                     :class="{
+                                         'strength-weak': passwordStrength < 2,
+                                         'strength-fair': passwordStrength >= 2 && passwordStrength < 4,
+                                         'strength-good': passwordStrength >= 4 && passwordStrength < 5,
+                                         'strength-strong': passwordStrength >= 5
+                                     }"></div>
+                            </div>
+                        </div>
+                        
+                        @if ($errors->has('password'))
+                            <p class="text-red-500 text-sm mt-1">{{ $errors->first('password') }}</p>
+                        @endif
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="space-y-2">
+                        <label for="password-confirm" class="block text-sm font-medium text-gray-700">
+                            @lang('outsideLogin.Confirm Password')
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <input id="password-confirm" 
+                                   :type="showConfirmPassword ? 'text' : 'password'" 
+                                   name="password_confirmation" 
+                                   x-model="confirmPassword"
+                                   @input="checkPasswordMatch()"
+                                   required
+                                   class="input-focus block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                   :class="{ 'border-red-500': !passwordMatch && confirmPassword.length > 0 }"
+                                   placeholder="Confirm your password">
+                            <button type="button" 
+                                    @click="showConfirmPassword = !showConfirmPassword"
+                                    class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <svg x-show="!showConfirmPassword" class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <svg x-show="showConfirmPassword" x-cloak class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p x-show="!passwordMatch && confirmPassword.length > 0" x-cloak class="text-red-500 text-sm mt-1">
+                            Passwords do not match
+                        </p>
+                    </div>
+
+                    <!-- Language Field -->
+                    <div class="space-y-2">
+                        <label for="language" class="block text-sm font-medium text-gray-700">
+                            @lang('outsideLogin.Language')
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                            </div>
+                            <select id="language" 
+                                    name="language" 
+                                    required
+                                    class="input-focus block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none bg-white">
+                                <option value="">Select your preferred language</option>
+                                <option value="en" {{ old('language') == 'en' ? 'selected' : '' }}>🇺🇸 English</option>
+                                <option value="nl" {{ old('language') == 'nl' ? 'selected' : '' }}>🇳🇱 Dutch</option>
+                            </select>
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" 
+                            class="btn-hover w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-8">
+                        <span>@lang('outsideLogin.Register')</span>
+                        <svg class="ml-2 -mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="mt-8 mb-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">or</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Links -->
+                <div class="text-center">
+                    <a href="{{ route('login') }}" 
+                       class="text-sm text-purple-600 hover:text-purple-500 font-medium transition-colors duration-200">
+                        @lang('outsideLogin.I already have a membership')
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 fade-in" style="animation-delay: 0.4s;">
+                <p class="text-white/80 text-sm">
+                    © {{ date('Y') }} {{ config('app.name', 'DCS') }}. All rights reserved.
+                </p>
             </div>
         </div>
-    </form>
+    </div>
 
-    <!-- <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
-    </div> -->
-
-    <a href="{{route('login')}}" class="text-center">@lang('outsideLogin.I already have a membership')</a>
-  </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
-
-<!-- jQuery 3 -->
-<script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- iCheck -->
-<script src="{{asset('plugins/iCheck/icheck.min.js')}}"></script>
-<script src="{{ asset('js/axios.min.js') }}"></script>
-<script src="{{ asset('js/languageSwitcher.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/languageSwitcher.js') }}"></script>
 </body>
 </html>

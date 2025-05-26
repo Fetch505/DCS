@@ -27,7 +27,7 @@
       <li class="treeview {{ request()->routeIs('supadmin.companiesIndex') || request()->routeIs('sup_customer.index') || request()->routeIs('floorType.index') || request()->routeIs('roomType.index') ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-building"></i>
-          <span>@lang('common.Company Management')</span>
+          <span>Company Management</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
@@ -50,7 +50,7 @@
       <li class="treeview {{ request()->routeIs('sup_admin.permissionsIndex') || request()->routeIs('sup_admin.rolesIndex') ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-lock"></i>
-          <span>@lang('common.Access Control')</span>
+          <span>Access Control</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
@@ -67,7 +67,7 @@
       <li class="treeview {{ request()->routeIs('methodCategory.index') || request()->routeIs('healthCategory.index') || request()->routeIs('method.index') || request()->routeIs('health.index') ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-medkit"></i>
-          <span>@lang('common.Methods & Health')</span>
+          <span>Methods & Health</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
@@ -95,7 +95,7 @@
       <li class="treeview {{ request()->routeIs('hourlyRateIndex') || request()->routeIs('supadmin.workersIndex') || request()->routeIs('modulePrice.index') ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-users"></i>
-          <span>@lang('common.Workers & Rates')</span>
+          <span>Workers & Rates</span>
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">

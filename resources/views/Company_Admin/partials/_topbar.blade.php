@@ -6,8 +6,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style="padding-top:3px;" href="{{route('/')}}"><image style="width:100px;" src="{{asset('new_landing_page/img/final_logo_dcs.png')}}"></a>
+        <a class="navbar-brand" style="padding-top:3px;" href="https://digital-clean-solution.vercel.app/" ><image style="width:100px;" src="{{asset('new_landing_page/img/final_logo_dcs.png')}}"></a>
     </div>
+    {{-- href="{{route('/')}}" --}}
     <!-- /.navbar-header -->
     {{-- write name of user and company on right side --}}
     

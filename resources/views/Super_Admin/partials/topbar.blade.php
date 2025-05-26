@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="{{route('/')}}" class="logo">
+  <a href="https://digital-clean-solution.vercel.app/" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>A</b>CS</span>
     <!-- logo for regular state and mobile devices -->
