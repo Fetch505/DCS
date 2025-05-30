@@ -19,15 +19,14 @@ class ElementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $company_id = auth()->id();
+{
+    $company_id = auth()->id(); // Authenticated user's ID
 
-        $data = array();
-        $data['elements'] = Element::where('company_id', $company_id)->get();
+    $data = array();
+    $data['elements'] = Element::where('company_id', $company_id)->get();
 
-      //  dd($data['elements']);
-      return view('Company_Admin.elements.index',$data);
-    }
+    return view('Company_Admin.elements.index', $data);
+}
 
     /**
      * Show the form for creating a new resource.

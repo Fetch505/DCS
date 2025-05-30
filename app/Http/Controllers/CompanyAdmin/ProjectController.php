@@ -90,7 +90,7 @@ class ProjectController extends Controller
 
   public function show($id)
 {
-    $project = Project::where('projects.id', '=', $id)->first() ->orderBy('id', 'desc');
+    $project = Project::where('projects.id', '=', $id)->first() ;
 
     // Check if the project exists
     if (!$project) {

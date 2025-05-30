@@ -117,11 +117,11 @@
             <!-- Company Setup -->
             <li>
                 <button
-                    class="dropdown-btn {{ request()->is('floor*') || request()->is('area*') || request()->is('element*') ? 'active' : '' }}">
+                    class="dropdown-btn {{ request()->is('floor*') || request()->is('area*')|| request()->is('task*') || request()->is('element*') ? 'active' : '' }}">
                     <i class="fa fa-cogs"></i> Company Setup <i class="fa fa-caret-down"></i>
                 </button>
                 <div
-                    class="dropdown-container {{ request()->is('floor*') || request()->is('area*') || request()->is('element*') ? 'show' : '' }}">
+                    class="dropdown-container {{ request()->is('floor*') || request()->is('area*') || request()->is('task*') || request()->is('element*') ? 'show' : '' }}">
                     <ul>
                         <li><a href="{{ route('floor.index') }}">@lang('common.Floors Management')</a></li>
                         <li><a href="{{ route('area.index') }}">@lang('common.Areas Management')</a></li>
@@ -134,11 +134,11 @@
             <!-- Human Resources -->
             <li>
                 <button
-                    class="dropdown-btn {{ request()->is('staff') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'active' : '' }}">
+                    class="dropdown-btn {{ request()->is('staff*') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'active' : '' }}">
                     <i class="fa fa-users"></i> Human Resources <i class="fa fa-caret-down"></i>
                 </button>
                 <div
-                    class="dropdown-container {{ request()->is('staff') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'show' : '' }}">
+                    class="dropdown-container {{ request()->is('staff*') || request()->is('staffType*') || request()->is('employ_agency*') || request()->is('shift*') ? 'show' : '' }}">
                     <ul>
                         <li><a href="{{ route('staff.index') }}">@lang('common.Staff Management')</a></li>
                         <li><a href="{{ route('staffType.index') }}">@lang('common.Staff Roles Management')</a></li>
@@ -151,11 +151,11 @@
             <!-- Project Management -->
             <li>
                 <button
-                    class="dropdown-btn {{ request()->is('project*') || request()->is('task*') || request()->is('projectcostestimate*') ? 'active' : '' }}">
+                    class="dropdown-btn {{ request()->is('project*')  || request()->is('projectcostestimate*') ? 'active' : '' }}">
                     <i class="fa fa-industry"></i> @lang('common.Projects') <i class="fa fa-caret-down"></i>
                 </button>
                 <div
-                    class="dropdown-container {{ request()->is('project*') || request()->is('task*') || request()->is('projectcostestimate*') ? 'show' : '' }}">
+                    class="dropdown-container {{ request()->is('project*') || request()->is('projectcostestimate*') ? 'show' : '' }}">
                     <ul>
                         <li><a href="{{ route('project.index') }}">@lang('common.Projects Management')</a></li>
                        

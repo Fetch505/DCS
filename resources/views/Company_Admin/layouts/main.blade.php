@@ -14,6 +14,22 @@
 .table-hover > tbody > tr:hover {
   background-color: #cce0ff;
 }
+h1{
+
+  font-weight: bold;
+  color: #337ab7;
+  text-shadow:
+    -1px -1px 0 #fff,  
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff;
+
+}
+#btn{
+  padding:10px;
+  background-color: #337ab7;
+  border-radius:50px;
+}
     </style>
     @yield('outer_css')
   </head>

@@ -14,9 +14,14 @@
 </style>
 @section('content')
 <div id="wrapper">
-  <div class="row">
-    <h1>@lang('common.Health And Safety Management')</h1>
-  </div>
+
+<div class="row">
+        <div class="col-sm-8">
+           <h1>@lang('common.Health And Safety Management')</h1>
+        </div>
+      
+    </div>
+
 
   <div class="row mt-4">
     <div class="col-lg-12">
