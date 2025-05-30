@@ -241,10 +241,7 @@
 
                 <!-- Footer Links -->
                 <div class="text-center space-y-3">
-                    <a href="{{ route('password.request') }}" 
-                       class="block text-sm text-gray-600 hover:text-gray-800 transition-colors duration-200">
-                        @lang('outsideLogin.I forgot my password')
-                    </a>
+                    
                     <a href="{{ route('register') }}" 
                        class="block text-sm text-blue-600 hover:text-blue-500 font-medium transition-colors duration-200">
                         @lang('outsideLogin.Register a new membership')
@@ -255,7 +252,7 @@
             <!-- Footer -->
             <div class="text-center mt-8 fade-in" style="animation-delay: 0.4s;">
                 <p class="text-white/80 text-sm">
-                    © {{ date('Y') }} {{ config('app.name', 'Laravel') }}. All rights reserved.
+                    © 2025 Digital Stationz All rights reserved.
                 </p>
             </div>
         </div>

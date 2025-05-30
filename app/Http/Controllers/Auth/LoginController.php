@@ -30,7 +30,7 @@ class LoginController extends Controller
 
     protected function loggedOut(\Illuminate\Http\Request $request)
 {
-    return redirect()->away('https://digital-clean-solution.vercel.app/'); // Replace with your external URL
+    return redirect()->away('https://digitalcleansolution.com/'); // Replace with your external URL
 }
 
     /**

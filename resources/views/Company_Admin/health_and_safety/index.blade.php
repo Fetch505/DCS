@@ -28,7 +28,7 @@
           <table id="table" class="table table-bordered table-striped table-hover" style="width:100%;">
             <thead>
               <tr>
-                <th style="width:5%;"       >@lang('Company_Admin/dashboard.Sr #')</th>
+                <th style="width:8%;"       >@lang('Company_Admin/dashboard.Sr #')</th>
                 <th style="min-width:150px;">@lang('common.Category')</th>
                 <th style="min-width:200px;">@lang('Company_Admin/dashboard.Title')</th>
                 <th style="min-width:300px;" data-orderable="false">@lang('Company_Admin/dashboard.Description')</th>

@@ -19,7 +19,7 @@
           <table id="table" class="table table-bordered table-striped table-hover" style="width:100%;">
             <thead>
               <tr>
-                <th style="width:5%;">@lang('Company_Admin/dashboard.Sr #')</th>
+                <th style="width:7%;">@lang('Company_Admin/dashboard.Sr #')</th>
                 <th style="min-width:150px;">@lang('common.Category')</th>
                 <th style="min-width:200px;">@lang('Company_Admin/dashboard.Title')</th>
                 <th style="min-width:300px;">@lang('Company_Admin/dashboard.Description')</th>
@@ -34,7 +34,9 @@
                 <td>{{ $method->title ?? '-' }}</td>
                 <td>{{ $method->description ?? '-' }}</td>
                 <td class="text-center">
-                  <a href="#" title="@lang('common.View File')" class="view-icon" data-toggle="modal" data-target="#myModal" data-video-url="{{ asset($method->video_url) }}">
+                  <a href="#" title="@lang('common.View File')" class="view-icon"
+                     data-toggle="modal" data-target="#myModal"
+                     data-video-url="{{ asset($method->video_url) }}">
                     <i class="fa fa-eye text-primary"></i>
                   </a>
                 </td>
@@ -48,7 +50,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="myModalLabel">@lang('common.View File')</h5>
+                  <h5 class="modal-title" id="myModalLabel">@lang('common.Video Guideline')</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -78,7 +80,7 @@
 <script>
 $(document).ready(function () {
   const languageSelected = document.getElementById('languageSwitcher')?.value || 'en';
-  
+
   $('#table').DataTable({
     responsive: true,
     language: languageSelected !== 'en' ? {
@@ -104,22 +106,21 @@ $(document).ready(function () {
     } : {}
   });
 
-  // Modal File Viewer
-  $('.view-icon').click(function () {
+  // Handle file view modal
+  $(document).on('click', '.view-icon', function () {
     const url = $(this).data('video-url');
-    const fileExt = url.split('.').pop().toLowerCase();
-
+    const ext = url.split('.').pop().toLowerCase();
     let content = '';
 
-    if (isImage(fileExt)) {
-      content = `<img src="${url}" class="img-fluid rounded" alt="Image" />`;
-    } else if (isVideo(fileExt)) {
+    if (isImage(ext)) {
+      content = `<img src="${url}" class="img-fluid rounded" alt="Preview Image" />`;
+    } else if (isVideo(ext)) {
       content = `
-        <video controls autoplay class="embed-responsive-item">
-          <source src="${url}" type="video/${fileExt}">
-          Your browser does not support the video tag.
+        <video controls autoplay class="embed-responsive-item rounded">
+          <source src="${url}" type="video/${ext}">
+          @lang('common.Your browser does not support the video tag.')
         </video>`;
-    } else if (isPDF(fileExt)) {
+    } else if (isPDF(ext)) {
       content = `<embed src="${url}" type="application/pdf" width="100%" height="600px" class="rounded" />`;
     } else {
       content = '<p class="text-danger">@lang("common.Unsupported File Type")</p>';
@@ -128,6 +129,7 @@ $(document).ready(function () {
     $('#file_view').html(content);
   });
 
+  // Clear content on modal close
   $('#myModal').on('hidden.bs.modal', function () {
     $('#file_view').empty();
   });
@@ -163,6 +165,7 @@ function isPDF(ext) {
 .modal-body embed {
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 </style>
 @endsection

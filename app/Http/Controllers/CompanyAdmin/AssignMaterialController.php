@@ -165,13 +165,13 @@ class AssignMaterialController extends Controller
         $availableQuantity = $project->materials()->where('material_id', $materialId)->first()->pivot->quantity;
 
         $user_ids   = [];
-        foreach ($project->jobs as $key=>$job) {
-            foreach ($job->days as $key=>$day) {
-                if($day->status == 1){
-                    $user_ids[] = $day->user->id;
-                }
-            }
+        foreach ($project->jobs as $key => $job) {
+    foreach ($job->days as $key => $day) {
+        if ($day->status == 1 && $day->user) {
+            $user_ids[] = $day->user->id;
         }
+    }
+}
         $user_ids = array_unique($user_ids);
         $users = User::whereIn('id', $user_ids)->select('name','id')->get(); // Or you can fetch specific users based on your criteria
 

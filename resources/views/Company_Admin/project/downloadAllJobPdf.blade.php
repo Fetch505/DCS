@@ -19,53 +19,56 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-          <!-- <div class="col-md-8 col-md-offset-4"> -->
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Project')  @lang('Company_Admin/dashboard.Name') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->name}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->name ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Description') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->description}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->description ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Customer') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->customer->name}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->customer->name ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Phone') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->phone}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->phone ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Address') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->address}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->address ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Country') :</label>
-            <span style="position: absolute; left: 150px;">{{$project->country}}</span>
+            <span style="position: absolute; left: 150px;">{{ $project->country ?? 'N/A' }}</span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.Start Date') :</label>
-            <span style="position: absolute; left: 150px;">{{ date('M j, Y', strtotime($project->start_date)) }}</span>
+            <span style="position: absolute; left: 150px;">
+              {{ isset($project->start_date) ? date('M j, Y', strtotime($project->start_date)) : 'N/A' }}
+            </span>
           </div>
           <br>
           <div class="inline">
             <label for="name">@lang('Company_Admin/dashboard.End Date') :</label>
-            <span style="position: absolute; left: 150px;">{{ date('M j, Y', strtotime($project->end_date)) }}</span>
+            <span style="position: absolute; left: 150px;">
+              {{ isset($project->end_date) ? date('M j, Y', strtotime($project->end_date)) : 'N/A' }}
+            </span>
           </div>
           <br>
 
           <div class="inline">
             <label for="name"><strong>@lang('Company_Admin/dashboard.Locations') :</strong></label>
             <ul style="padding-left:150px; list-style-type:square">
-              @foreach ($project->locations as $location)
-              <li> <i>{{$location->name}}</i> </li>
+              @foreach ($project->locations ?? [] as $location)
+                <li><i>{{ $location->name ?? 'N/A' }}</i></li>
               @endforeach
             </ul>
           </div>
@@ -76,8 +79,8 @@
               </div>
 
               <div class="panel-body">
-                @foreach($jobs as $key=>$job)
-                  <h4>{{$job->floor->name}}</h4>
+                @foreach($jobs ?? [] as $key => $job)
+                  <h4>{{ $job->floor->name ?? 'N/A' }}</h4>
                   <table class="table table-bordered table-striped table-hover">
                     <thead>
                       <tr>
@@ -97,29 +100,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($job->days as $key => $day)
-                      <tr>
-                        <td>{{$day->area->name}}</td>
-                        <td>{{$day->user->name}}</td>
-                        <td>{{$day->location['name']}}</td>
-                        <td>{{$day->element->name}}</td>
-                        <td>{{$day->task->name}}</td>
-                        <td>{{$day->type}}</td>
-                        <td>{{($day->mon == "1") ? 'X':''}}</td>
-                        <td>{{($day->tue == "1") ? 'X':''}}</td>
-                        <td>{{($day->wed == "1") ? 'X':''}}</td>
-                        <td>{{($day->thu == "1") ? 'X':''}}</td>
-                        <td>{{($day->fri == "1") ? 'X':''}}</td>
-                        <td>{{($day->sat == "1") ? 'X':''}}</td>
-                        <td>{{($day->sun == "1") ? 'X':''}}</td>
-                      </tr>
+                      @foreach($job->days ?? [] as $key => $day)
+                        <tr>
+                          <td>{{ $day->area->name ?? 'N/A' }}</td>
+                          <td>{{ $day->user->name ?? 'N/A' }}</td>
+                          <td>{{ $day->location['name'] ?? 'N/A' }}</td>
+                          <td>{{ $day->element->name ?? 'N/A' }}</td>
+                          <td>{{ $day->task->name ?? 'N/A' }}</td>
+                          <td>{{ $day->type ?? 'N/A' }}</td>
+                          <td>{{ ($day->mon == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->tue == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->wed == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->thu == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->fri == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->sat == "1") ? 'X' : '' }}</td>
+                          <td>{{ ($day->sun == "1") ? 'X' : '' }}</td>
+                        </tr>
                       @endforeach
                     </tbody>
                   </table>
                 @endforeach
               </div>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>

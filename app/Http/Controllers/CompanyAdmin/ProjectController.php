@@ -39,26 +39,33 @@ use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-        $company_id = Auth::id();
-        $projects   = Project::where('company_id', '=', $company_id)->get();
-        
-        foreach ($projects as $key=>$project) {
-            $user_ids   = [];
-            foreach ($project->jobs as $key=>$job) {
-                foreach ($job->days as $key=>$day) {
-                    if($day->status == 1){
-                        $user_ids[] = $day->user->id;
-                    }
+   public function index()
+{
+    $company_id = Auth::id();
+
+    // Reverse order by 'id' or 'created_at' (descending = latest first)
+    $projects = Project::where('company_id', $company_id)
+        ->orderBy('id', 'desc') // or ->orderBy('created_at', 'desc')
+        ->get();
+
+    foreach ($projects as $project) {
+        $user_ids = [];
+
+        foreach ($project->jobs as $job) {
+            foreach ($job->days as $day) {
+                if ($day->status == 1 && $day->user) {
+                    $user_ids[] = $day->user->id;
                 }
             }
-            $user_ids = array_unique($user_ids);
-            $totalWorkers = count($user_ids);
-            $project->totalWorkers = $totalWorkers;
         }
-        return view('Company_Admin.project.index')->withProjects($projects);
+
+        $user_ids = array_unique($user_ids);
+        $project->totalWorkers = count($user_ids);
     }
+
+    return view('Company_Admin.project.index')->withProjects($projects);
+}
+
 
     public function create()
     {
@@ -81,59 +88,97 @@ class ProjectController extends Controller
         return view('Company_Admin.project.add',compact('areas','floors','customers','elements','tasks','workers','floorTypes'));
     }
 
-    public function show($id)
-    {
-        $project   = Project::where('projects.id','=',$id)->first();
-        $floor_ids = [];
-        $user_ids   = [];
-        $area_ids  = [];
-        foreach ($project->jobs as $key=>$job) {
-            $floor_ids[$key] = $job->floor_id;
-            foreach ($job->days as $key=>$day) {
-                if($day->status == 1){
-                    $user_ids[] = $day->user->id;
+  public function show($id)
+{
+    $project = Project::where('projects.id', '=', $id)->first() ->orderBy('id', 'desc');
+
+    // Check if the project exists
+    if (!$project) {
+        abort(404, 'Project not found');
+    }
+
+    $floor_ids = [];
+    $user_ids = [];
+    $area_ids = [];
+
+    if ($project->jobs) {
+        foreach ($project->jobs as $key => $job) {
+            if ($job) {
+                $floor_ids[$key] = $job->floor_id;
+
+                if ($job->days) {
+                    foreach ($job->days as $key => $day) {
+                        if ($day && $day->status == 1 && $day->user) {
+                            $user_ids[] = $day->user->id;
+                        }
+                    }
                 }
             }
         }
-        $user_ids = array_unique($user_ids);
-        $totalWorkers = count($user_ids);
-        $floors = Floor::select('id','name')
-                        ->whereIn('id',$floor_ids)
-                        ->orderBy('name','asc')
-                        ->get();
-        return view('Company_Admin.project.view',compact('project','floors','totalWorkers'));
     }
 
-    public function edit(Project $project)
-    {
-        $areas     = Area::all();
-        $floors    = Floor::all();
-        $customers = Customer::where('company_id', '=', Auth::id())
-                                ->pluck('name','id');
-        $floorTypes = FloorType::all();
-        $elements   = Element::all();
-        $tasks      = Task::all();
-        $comp_id    = Auth::user()->company_id;
-        $role       = Role::select('id')->where('name','=','user')->first();
-        $workers    = User::select('name','id')
-                            ->where('role_id','=',$role->id)
-                            ->where('status','=',1)
-                            ->where('company_id','=',$comp_id)
-                            ->get();
+    $user_ids = array_unique($user_ids);
+    $totalWorkers = count($user_ids);
 
-        $user_ids   = [];
-        foreach ($project->jobs as $key=>$job) {
-            foreach ($job->days as $key=>$day) {
-                if($day->status == 1){
-                    $user_ids[] = $day->user->id;
+    $floors = Floor::select('id', 'name')
+        ->whereIn('id', $floor_ids)
+        ->orderBy('name', 'asc')
+        ->get();
+
+    return view('Company_Admin.project.view', compact('project', 'floors', 'totalWorkers'));
+}
+
+   public function edit(Project $project)
+{
+    $areas     = Area::all();
+    $floors    = Floor::all();
+    $customers = Customer::where('company_id', '=', Auth::id())
+                        ->pluck('name', 'id');
+    $floorTypes = FloorType::all();
+    $elements   = Element::all();
+    $tasks      = Task::all();
+
+    $user = Auth::user();
+    $comp_id = $user ? $user->company_id : null;
+
+    $workers = collect(); // default empty
+    $role = Role::select('id')->where('name', '=', 'user')->first();
+    if ($role && $comp_id) {
+        $workers = User::select('name', 'id')
+                    ->where('role_id', '=', $role->id)
+                    ->where('status', '=', 1)
+                    ->where('company_id', '=', $comp_id)
+                    ->get();
+    }
+
+    $user_ids = [];
+    if ($project->jobs) {
+        foreach ($project->jobs as $job) {
+            if ($job->days) {
+                foreach ($job->days as $day) {
+                    if ($day && $day->status == 1 && $day->user) {
+                        $user_ids[] = $day->user->id;
+                    }
                 }
             }
         }
-        $user_ids = array_unique($user_ids);
-        $totalWorkers = count($user_ids);
-
-        return view('Company_Admin.project.edit',compact('areas','floors','customers','elements','tasks','workers','project','floorTypes','totalWorkers'));
     }
+
+    $user_ids = array_unique($user_ids);
+    $totalWorkers = count($user_ids);
+
+    return view('Company_Admin.project.edit', compact(
+        'areas',
+        'floors',
+        'customers',
+        'elements',
+        'tasks',
+        'workers',
+        'project',
+        'floorTypes',
+        'totalWorkers'
+    ));
+}
 
     public function deleteRecord(Project $project)
     {
