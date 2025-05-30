@@ -209,9 +209,18 @@ class MaterialController extends Controller
           }
 
           foreach ($suppliersData as $supplierEmail => $supplierData) {
-              Mail::to($supplierEmail)
-                  ->send(new SupplierNotification($supplierData['materials'], $supplierData['name']));
-          }
+    if (filter_var($supplierEmail, FILTER_VALIDATE_EMAIL)) {
+        try {
+            Mail::to($supplierEmail)
+                ->send(new SupplierNotification($supplierData['materials'], $supplierData['name']));
+        } catch (\Exception $mailException) {
+            // Log email failure and continue
+            \Log::error("Failed to send email to {$supplierEmail}: " . $mailException->getMessage());
+        }
+    } else {
+        \Log::warning("Invalid supplier email skipped: {$supplierEmail}");
+    }
+}
           return response()->json(['redirectUrl' => route('showMaterialOrders')],200);
         } 
         catch (\Exception $e) {

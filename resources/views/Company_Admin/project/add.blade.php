@@ -336,11 +336,11 @@ thead {
               </div>
             </div>
 
-            <div class="form-group row">
+            {{-- <div class="form-group row">
               <div class="col-md-10">
                 <button id="tasks_modal" type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#tasks" data-whatever="@mdo">@lang('Company_Admin/dashboard.add_tasks')</button>
               </div>
-            </div>
+            </div> --}}
 
             <template v-if="tempJobs.length > 0">
               <div class="form-group row">

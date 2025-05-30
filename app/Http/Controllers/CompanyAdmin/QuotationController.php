@@ -19,7 +19,7 @@ class QuotationController extends Controller
 {
     public function index()
     {
-        $quotations = Quotation::with('items')->latest()->get();
+        $quotations = Quotation::with('items')->latest()->orderBy('id', 'desc')->get();
         return view('Company_Admin.quotations.index', compact('quotations'));
     }
 
