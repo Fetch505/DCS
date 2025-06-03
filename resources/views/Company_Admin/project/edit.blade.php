@@ -702,11 +702,11 @@ thead {
               <v-select :options="allElements" label="displayName" v-model="addJob.element_id" placeholder="@lang('Company_Admin/dashboard.Select Element')" @input="elementChanged">
               </v-select>
             </div>
-            <div class="input-group-append">
+            {{-- <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" @click="showNewElementForm = true">
                 <i class="fa fa-plus"></i>
               </button>
-            </div>
+            </div> --}}
           </div>
 
           <!-- New element form -->
